@@ -8,12 +8,12 @@ import java.util.ArrayList;
 
 
 
-public class ServiceMarque
+public class ServiceArticle
 {
 	private ArrayList<Pays> paysFiltre;
 	private ArrayList<Continent> continentFiltre;
 	private ArrayList<Fabricant> fabricantFiltre;
-	public ServiceMarque()
+	public ServiceArticle()
 	{
 		paysFiltre = DaoFactory.getPaysDAO().getAll();
 		continentFiltre = DaoFactory.getContinentDAO().getAll();
@@ -40,9 +40,9 @@ public class ServiceMarque
 		return fabricantFiltre;
 	}
 
-	public ArrayList<Marque> getFilteredArticles()
+	public ArrayList<Article> getFilteredArticles()
 	{
-		return DaoFactory.getMarqueDAO().getAll();
+		return DaoFactory.getArticleDAO().getAll();
 	}
 
 }

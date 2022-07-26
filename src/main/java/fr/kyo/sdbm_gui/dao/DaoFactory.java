@@ -26,4 +26,8 @@ public class DaoFactory {
     public static MarqueDAO getMarqueDAO() {
         return new MarqueDAO(connexion);
     }
+
+    public static ArticleDAO getArticleDAO() {
+        return new ArticleDAO(connexion);
+    }
 }

@@ -1,10 +1,7 @@
 package fr.kyo.sdbm_gui;
 
-import fr.kyo.sdbm_gui.metier.Continent;
-import fr.kyo.sdbm_gui.metier.Fabricant;
-import fr.kyo.sdbm_gui.metier.Marque;
-import fr.kyo.sdbm_gui.metier.Pays;
-import fr.kyo.sdbm_gui.service.ServiceMarque;
+import fr.kyo.sdbm_gui.metier.*;
+import fr.kyo.sdbm_gui.service.ServiceArticle;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
@@ -13,14 +10,16 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 
 
-public class GestionMarqueController {
+public class GestionArticleController {
     // Description de la table
     @FXML
-    private TableView<Marque> articleTable;
+    private TableView<Article> articleTable;
     @FXML
-    private TableColumn<Marque, Integer> idColumn;
+    private TableColumn<Article, Integer> idColumn;
     @FXML
-    private TableColumn<Marque, String> nomColumn;
+    private TableColumn<Article, String> nomColumn;
+    @FXML
+    private TableColumn<Article, String> volumeColumn;
 
 
     // description des champs de recherche
@@ -36,31 +35,32 @@ public class GestionMarqueController {
 
     private MenuApp menuApp;
 
-    private ServiceMarque serviceMarque;
+    private ServiceArticle serviceArticle;
 
     // Initialisation de la vue
     @FXML
     private void initialize() {
-        serviceMarque = new ServiceMarque();
+        serviceArticle = new ServiceArticle();
         idColumn.setCellValueFactory(cellData -> cellData.getValue().idProperty().asObject());
         nomColumn.setCellValueFactory(cellData -> cellData.getValue().libelleProperty());
+        volumeColumn.setCellValueFactory(cellData -> cellData.getValue().volumeProperty().asString());
 
         // Initialisation des comboBox
-        continentSearch.setItems(FXCollections.observableArrayList(serviceMarque.getContinentFiltre()));
+        continentSearch.setItems(FXCollections.observableArrayList(serviceArticle.getContinentFiltre()));
         continentSearch.getItems().add(0,new Continent(0, "Choisir un continent"));
         continentSearch.valueProperty().addListener(observable -> filterContinent());
 
-        paysSearch.setItems(FXCollections.observableArrayList(serviceMarque.getPaysFiltre()));
-        paysSearch.valueProperty().addListener(observable -> filterMarque());
+        paysSearch.setItems(FXCollections.observableArrayList(serviceArticle.getPaysFiltre()));
+        paysSearch.valueProperty().addListener(observable -> filterArticle());
 
-        fabricantSearch.setItems(FXCollections.observableArrayList(serviceMarque.getFabricantFiltre()));
-        fabricantSearch.valueProperty().addListener(observable -> filterMarque());
+        fabricantSearch.setItems(FXCollections.observableArrayList(serviceArticle.getFabricantFiltre()));
+        fabricantSearch.valueProperty().addListener(observable -> filterArticle());
 
     }
 
     public void setMenuApp(MenuApp menuApp) {
         this.menuApp = menuApp;
-        filterMarque();
+        filterArticle();
     }
 
 
@@ -71,15 +71,15 @@ public class GestionMarqueController {
                     (continentSearch.getSelectionModel().getSelectedItem()).getPays()));
 
         } else {
-            paysSearch.setItems(FXCollections.observableArrayList(serviceMarque.getPaysFiltre()));
+            paysSearch.setItems(FXCollections.observableArrayList(serviceArticle.getPaysFiltre()));
         }
         paysSearch.getItems().add(0,new Pays("", "Choisir un pays", new Continent()));
         paysSearch.getSelectionModel().select(0);
-        filterMarque();
+        filterArticle();
     }
 
     @FXML
-    private void filterMarque() {
-        articleTable.setItems(FXCollections.observableArrayList(serviceMarque.getFilteredArticles()));
+    private void filterArticle() {
+        articleTable.setItems(FXCollections.observableArrayList(serviceArticle.getFilteredArticles()));
     }
 }

@@ -38,7 +38,7 @@ public class MenuApp extends Application {
             Scene scene = new Scene(menuLayout);
             primaryStage.setScene(scene);
 
-            GestionMarqueController controller = loader.getController();
+            GestionArticleController controller = loader.getController();
             controller.setMenuApp(this);
 
             primaryStage.show();
