@@ -34,4 +34,8 @@ public class DaoFactory {
     public static CouleurDAO getCouleurDAO() {
         return new CouleurDAO(connexion);
     }
+
+    public static TypeDAO getTypeDAO() {
+        return new TypeDAO(connexion);
+    }
 }
