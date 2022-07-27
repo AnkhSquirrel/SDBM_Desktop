@@ -130,8 +130,6 @@ public class ArticleDAO extends DAO<Article, Article> {
             if (article.getType() == null) { preparedStatement.setNull(7 , Types.INTEGER);}
             else { preparedStatement.setInt(7, article.getType().getId());}
             preparedStatement.setInt(8, article.getStock());
-
-
             preparedStatement.executeUpdate();
             ResultSet rs = preparedStatement.getGeneratedKeys();
             rs.close();
