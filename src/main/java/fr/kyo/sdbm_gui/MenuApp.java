@@ -33,7 +33,7 @@ public class MenuApp extends Application {
             // Chargement du fichier fxml
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MenuApp.class.getResource("GestionArticle.fxml"));
-            AnchorPane menuLayout = (AnchorPane) loader.load();
+            AnchorPane menuLayout = loader.load();
 
             Scene scene = new Scene(menuLayout);
             primaryStage.setScene(scene);
