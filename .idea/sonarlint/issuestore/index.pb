@@ -1,4 +1,3 @@
-
 a
 1src/main/java/fr/kyo/sdbm_gui/metier/Couleur.java,8\e\8e77d4ecfe2be2dcaf3f4c5b206fe07a8adf0648
 7
