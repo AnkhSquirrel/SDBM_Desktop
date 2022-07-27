@@ -28,7 +28,7 @@ public class PaysDAO extends DAO<Pays, Pays> {
 			rs = stmt.executeQuery(strCmd);
 
 			while (rs.next()) {
-				liste.add(new Pays(rs.getString(1), rs.getString(2), new Continent(rs.getInt(3), rs.getString(4))));
+				liste.add(new Pays(rs.getInt(1), rs.getString(2), new Continent(rs.getInt(3), rs.getString(4))));
 			}
 			rs.close();
 
@@ -52,7 +52,7 @@ public class PaysDAO extends DAO<Pays, Pays> {
 			rs = pStmt.executeQuery();
 
 			while (rs.next()) {
-				liste.add(new Pays(rs.getString(1), rs.getString(2)));
+				liste.add(new Pays(rs.getInt(1), rs.getString(2)));
 			}
 			rs.close();
 		}

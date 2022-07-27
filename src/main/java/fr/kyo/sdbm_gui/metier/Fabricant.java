@@ -5,6 +5,10 @@ public class Fabricant
     private int id;
     private String libelle;
 
+    public Fabricant() {
+        this.id = id;
+        this.libelle = libelle;
+    }
     public Fabricant(int id, String libelle) {
         this.id = id;
         this.libelle = libelle;
