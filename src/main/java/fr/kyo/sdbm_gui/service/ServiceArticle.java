@@ -55,4 +55,14 @@ public class ServiceArticle
  		return DaoFactory.getCouleurDAO().getAll();
 	}
 
+	public ArrayList<Marque> getFilteredMarque()
+	{
+		return DaoFactory.getMarqueDAO().getAll();
+	}
+
+	public ArrayList<Type> getFilteredType()
+	{
+		return DaoFactory.getTypeDAO().getAll();
+	}
+
 }
