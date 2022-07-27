@@ -54,8 +54,13 @@
       </GridPane>
       <ButtonBar layoutX="167.0" layoutY="520.0" prefHeight="60.0" prefWidth="251.0">
          <buttons>
-            <Button layoutX="213.0" layoutY="19.0" mnemonicParsing="false" onAction="#annuler" text="Cancel" />
-            <Button mnemonicParsing="false" onAction="#confirmer" text="Save" />
+
+            <Button layoutX="213.0" layoutY="19.0" mnemonicParsing="false" text="Cancel" />
+            <Button mnemonicParsing="false" text="Save" />
+
+            <Button layoutX="213.0" layoutY="19.0" mnemonicParsing="false" text="Cancel" />
+            <Button mnemonicParsing="false" text="Save" />
+
          </buttons>
       </ButtonBar>
    </children>
