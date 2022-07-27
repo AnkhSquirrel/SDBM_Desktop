@@ -43,6 +43,10 @@ public class GestionArticleController {
     private RangeSlider rangeSliderTitrage;
     @FXML
     private ComboBox<Couleur> couleurSearch;
+    @FXML
+    private ComboBox<Type> typeSearch;
+    @FXML
+    private ComboBox<Marque> marqueSearch;
 
     @FXML
     private MenuApp menuApp;
@@ -81,6 +85,12 @@ public class GestionArticleController {
         couleurSearch.setItems(FXCollections.observableArrayList(serviceArticle.getFilteredCouleur()));
         couleurSearch.valueProperty().addListener(observable -> filterArticle());
 
+        marqueSearch.setItems(FXCollections.observableArrayList(serviceArticle.getFilteredMarque()));
+        marqueSearch.valueProperty().addListener(observable -> filterArticle());
+
+        typeSearch.setItems(FXCollections.observableArrayList(serviceArticle.getFilteredType()));
+        typeSearch.valueProperty().addListener(observable -> filterArticle());
+
     }
 
     public void setMenuApp(MenuApp menuApp) {
@@ -118,9 +128,12 @@ public class GestionArticleController {
             articleSearch.setVolume(volumeSearch.getSelectionModel().getSelectedItem());
         articleSearch.setTitrageMin((float) rangeSliderTitrage.getLowValue());
         articleSearch.setTitrageMax((float) rangeSliderTitrage.getHighValue());
-
         if (couleurSearch.getSelectionModel().getSelectedItem() != null)
             articleSearch.setCouleur(couleurSearch.getSelectionModel().getSelectedItem());
+        if (typeSearch.getSelectionModel().getSelectedItem() != null)
+            articleSearch.setType(typeSearch.getSelectionModel().getSelectedItem());
+        if (marqueSearch.getSelectionModel().getSelectedItem() != null)
+            articleSearch.setMarque(marqueSearch.getSelectionModel().getSelectedItem());
 
 
 
