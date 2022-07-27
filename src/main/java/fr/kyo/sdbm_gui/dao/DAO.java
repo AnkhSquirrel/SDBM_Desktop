@@ -11,6 +11,11 @@ public abstract class DAO <T, S>
 	{
 		this.connexion = connexion;
 	}
+
+	protected Connection connexion(){
+		return connexion;
+	}
+
 	public abstract T getByID(int id);
 	public abstract ArrayList <T> getAll();
 	public abstract ArrayList <T> getLike(S objet);
