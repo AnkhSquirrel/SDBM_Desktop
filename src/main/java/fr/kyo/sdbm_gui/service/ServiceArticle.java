@@ -13,13 +13,11 @@ public class ServiceArticle
 	private ArrayList<Pays> paysFiltre;
 	private ArrayList<Continent> continentFiltre;
 	private ArrayList<Fabricant> fabricantFiltre;
-	private ArrayList<Fabricant> titrageFiltre;
 	public ServiceArticle()
 	{
 		paysFiltre = DaoFactory.getPaysDAO().getAll();
 		continentFiltre = DaoFactory.getContinentDAO().getAll();
 		fabricantFiltre = DaoFactory.getFabricantDAO().getAll();
-		titrageFiltre = DaoFactory.getTitrageDAO().getAll();
 		Fabricant fabricant = new Fabricant();
 		fabricant.setLibelle("Choisir un fabricant");
 		fabricantFiltre.add(0, fabricant);
@@ -42,14 +40,19 @@ public class ServiceArticle
 		return fabricantFiltre;
 	}
 
-	public ArrayList<Article> getFilteredArticles()
+	public ArrayList<Article> getFilteredArticles(ArticleSearch articleSearch)
 	{
-		return DaoFactory.getArticleDAO().getAll();
+		return DaoFactory.getArticleDAO().getLike(articleSearch);
 	}
 
 	public ArrayList<Integer> getFilteredVolume()
 	{
 		return DaoFactory.getArticleDAO().getVolume();
+	}
+
+	public ArrayList<Couleur> getFilteredCouleur()
+	{
+
 	}
 
 }

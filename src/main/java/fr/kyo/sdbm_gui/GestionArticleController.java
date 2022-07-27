@@ -9,6 +9,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import org.controlsfx.control.RangeSlider;
 
 
 public class GestionArticleController {
@@ -39,6 +40,11 @@ public class GestionArticleController {
     @FXML
     private ComboBox<Integer> volumeSearch;
     @FXML
+    private RangeSlider rangeSliderTitrage;
+    @FXML
+    private ComboBox<Integer> couleurSearch;
+
+    @FXML
     private MenuApp menuApp;
 
     private ServiceArticle serviceArticle;
@@ -66,6 +72,11 @@ public class GestionArticleController {
 
         volumeSearch.setItems(FXCollections.observableArrayList(serviceArticle.getFilteredVolume()));
         volumeSearch.valueProperty().addListener(observable -> filterArticle());
+
+        rangeSliderTitrage.setLowValue(0.5);
+        rangeSliderTitrage.setHighValue(26);
+        rangeSliderTitrage.lowValueProperty().addListener(observable -> filterArticle());
+        rangeSliderTitrage.highValueProperty().addListener(observable -> filterArticle());
 
     }
 
@@ -100,7 +111,13 @@ public class GestionArticleController {
             articleSearch.setContinent(continentSearch.getSelectionModel().getSelectedItem());
         if (fabricantSearch.getSelectionModel().getSelectedItem() != null)
             articleSearch.setFabricant(fabricantSearch.getSelectionModel().getSelectedItem());
+        if (volumeSearch.getSelectionModel().getSelectedItem() != null)
+            articleSearch.setVolume(volumeSearch.getSelectionModel().getSelectedItem());
+        articleSearch.setTitrageMin((float) rangeSliderTitrage.getLowValue());
+        articleSearch.setTitrageMax((float) rangeSliderTitrage.getHighValue());
 
-        articleTable.setItems(FXCollections.observableArrayList(serviceArticle.getFilteredArticles()));
+
+
+        articleTable.setItems(FXCollections.observableArrayList(serviceArticle.getFilteredArticles(articleSearch)));
     }
 }

@@ -7,6 +7,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
+<?import org.controlsfx.control.RangeSlider?>
 
 <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="559.0" prefWidth="943.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.kyo.sdbm_gui.GestionArticleController">
 	<children>
@@ -22,6 +23,8 @@
 										<ComboBox fx:id="fabricantSearch" layoutX="26.0" layoutY="97.0" prefWidth="150.0" promptText="Choisir un fabricant" />
 										<ComboBox fx:id="continentSearch" layoutX="204.0" layoutY="97.0" prefWidth="150.0" promptText="Choisir un continent" />
 										<ComboBox fx:id="paysSearch" layoutX="383.0" layoutY="97.0" prefWidth="150.0" promptText="Choisir un pays" />
+            <ComboBox fx:id="volumeSearch" layoutX="26.0" layoutY="130.0" prefWidth="150.0" promptText="Choisir un volume" />
+            <RangeSlider fx:id="rangeSliderTitrage" blockIncrement="0.1" highValue="26.0" highValueChanging="true" layoutX="209.0" layoutY="124.0" lowValue="1.0" lowValueChanging="true" majorTickUnit="5.0" max="26.0" min="0.5" showTickLabels="true" showTickMarks="true" />
 									</children>
 								</AnchorPane>
 								<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="381.0" prefWidth="700.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0">
