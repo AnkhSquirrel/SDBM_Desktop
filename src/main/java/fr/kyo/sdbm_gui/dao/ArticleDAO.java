@@ -141,12 +141,43 @@ public class ArticleDAO extends DAO<Article, Article> {
     }
 
     @Override
-    public boolean update(Article object) {
-        return false;
+    public boolean update(Article article) {
+        try {
+            String requete = "UPDATE article SET nom_article = ?, PRIX_ACHAT = ?, VOLUME = ?, TITRAGE = ?, ID_MARQUE = ?, ID_COULEUR = ?, ID_TYPE = ?,  STOCK= ?  WHERE id_article = ?";
+            PreparedStatement  preparedStatement = connexion().prepareStatement(requete);
+            preparedStatement.setString(1, article.getLibelle());
+            preparedStatement.setFloat(2, article.getPrixAchat());
+            preparedStatement.setInt(3, article.getVolume());
+            preparedStatement.setFloat(4, article.getTitrage());
+            preparedStatement.setInt(5, article.getMarque().getId());
+            if (article.getCouleur() == null) {preparedStatement.setNull(6 , Types.INTEGER);}
+            else {preparedStatement.setInt(6, article.getCouleur().getId());}
+            if (article.getType() == null) { preparedStatement.setNull(7 , Types.INTEGER);}
+            else { preparedStatement.setInt(7, article.getType().getId());}
+            preparedStatement.setInt(8, article.getStock());
+            preparedStatement.executeUpdate();
+            ResultSet rs = preparedStatement.getGeneratedKeys();
+            rs.close();
+            preparedStatement.close();
+            return true;
+        } catch (SQLException e) {
+            return false;
+        }
     }
 
     @Override
-    public boolean delete(Article object) {
-        return false;
+    public boolean delete(Article article) {
+        try {
+            String requete = "DELETE FROM article WHERE id_article=?";
+            PreparedStatement preparedStatement = connexion().prepareStatement(requete);
+            preparedStatement.setInt(1, article.getId());
+            int rowDeleted = preparedStatement.executeUpdate();
+            if (rowDeleted == 0)
+                article.setId(0);
+            return true;
+        } catch (SQLException e) {
+            return false;
+        }
     }
+
 }
