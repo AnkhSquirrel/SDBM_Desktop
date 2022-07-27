@@ -130,4 +130,8 @@ public class Article
 		this.prixAchat = prixAchat;
 	}
 
+	public FloatProperty prixAchatProperty()
+	{
+		return new SimpleFloatProperty(prixAchat);
+	}
 }

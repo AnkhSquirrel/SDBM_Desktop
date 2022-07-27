@@ -20,6 +20,10 @@ public class GestionArticleController {
     private TableColumn<Article, String> nomColumn;
     @FXML
     private TableColumn<Article, String> volumeColumn;
+    @FXML
+    private TableColumn<Article, String> titrageColumn;
+    @FXML
+    private TableColumn<Article, String> prixAchatColumn;
 
 
     // description des champs de recherche
@@ -43,7 +47,9 @@ public class GestionArticleController {
         serviceArticle = new ServiceArticle();
         idColumn.setCellValueFactory(cellData -> cellData.getValue().idProperty().asObject());
         nomColumn.setCellValueFactory(cellData -> cellData.getValue().libelleProperty());
+        titrageColumn.setCellValueFactory(cellData -> cellData.getValue().titrageProperty().asString());
         volumeColumn.setCellValueFactory(cellData -> cellData.getValue().volumeProperty().asString());
+        prixAchatColumn.setCellValueFactory(cellData -> cellData.getValue().prixAchatProperty().asString());
 
         // Initialisation des comboBox
         continentSearch.setItems(FXCollections.observableArrayList(serviceArticle.getContinentFiltre()));

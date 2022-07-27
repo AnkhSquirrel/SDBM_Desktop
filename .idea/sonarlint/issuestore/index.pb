@@ -19,3 +19,7 @@ c
 0src/main/java/fr/kyo/sdbm_gui/dao/MarqueDAO.java,1\d\1d652a786a95618557589d3072b2933550d3985f
 a
 1src/main/java/fr/kyo/sdbm_gui/dao/DaoFactory.java,b\b\bbc21bbbd8713c25ce195d4e8fb39a00e33d2369
+i
+9src/main/java/fr/kyo/sdbm_gui/service/ServiceArticle.java,2\4\24f48256b39f7dc5627cfa19991d92c5aa60a6de
+a
+1src/main/java/fr/kyo/sdbm_gui/dao/ArticleDAO.java,b\e\bef87d7a1ea83effab92690e8d80ff9dc5b5ee32

@@ -2,14 +2,14 @@ package fr.kyo.sdbm_gui.dao;
 
 import fr.kyo.sdbm_gui.metier.*;
 import fr.kyo.sdbm_gui.service.ArticleSearch;
+import fr.kyo.sdbm_gui.metier.Article;
 
 import java.sql.*;
 import java.util.ArrayList;
 
 public class ArticleDAO extends DAO<Article, Article> {
 
-    public ArticleDAO(Connection connexion)
-    {
+    public ArticleDAO(Connection connexion) {
         super(connexion);
     }
 
@@ -22,13 +22,15 @@ public class ArticleDAO extends DAO<Article, Article> {
     public ArrayList<Article> getAll() {
         ArrayList<Article> liste = new ArrayList<>();
         try (Statement stmt = connexion.createStatement()) {
-            String strCmd = "SELECT id_article, nom_article, volume from Article order by nom_article";
+            String strCmd = "SELECT id_article, nom_article, titrage, volume, prix_achat from Article order by nom_article";
             ResultSet rs = stmt.executeQuery(strCmd);
             while (rs.next()) {
                 Article article = new Article();
                 article.setId(rs.getInt(1));
                 article.setLibelle( rs.getString(2));
-                article.setVolume( rs.getInt(3));
+                article.setTitrage(rs.getFloat(3));
+                article.setVolume( rs.getInt(4));
+                article.setPrixAchat( rs.getFloat(5));
                 liste.add(article);
             }
             rs.close();
