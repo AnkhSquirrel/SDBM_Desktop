@@ -1,26 +1,26 @@
 package fr.kyo.sdbm_gui.dao;
 
-import fr.kyo.sdbm_gui.metier.TypeBiere;
+import fr.kyo.sdbm_gui.metier.Type;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-public class TypeDAO extends DAO<TypeBiere , TypeBiere> {
+public class TypeDAO extends DAO<Type , Type> {
     public TypeDAO(Connection connexion) {
         super(connexion);
     }
 
 
     @Override
-    public TypeBiere getByID(int id) {
+    public Type getByID(int id) {
         return null;
     }
 
     @Override
-    public ArrayList<TypeBiere> getAll() {
+    public ArrayList<Type> getAll() {
         {
-            ArrayList<TypeBiere> liste = new ArrayList<>();
+            ArrayList<Type> liste = new ArrayList<>();
             try (Statement stmt = connexion.createStatement()) {
 
 
@@ -30,7 +30,7 @@ public class TypeDAO extends DAO<TypeBiere , TypeBiere> {
                 ResultSet rs = stmt.executeQuery(strCmd);
 
                 while (rs.next()) {
-                    liste.add(new TypeBiere(rs.getInt(1), rs.getString(2)));
+                    liste.add(new Type(rs.getInt(1), rs.getString(2)));
                 }
                 rs.close();
             }
@@ -44,22 +44,22 @@ public class TypeDAO extends DAO<TypeBiere , TypeBiere> {
     }
 
     @Override
-    public ArrayList<TypeBiere> getLike(TypeBiere objet) {
+    public ArrayList<Type> getLike(Type objet) {
         return null;
     }
 
     @Override
-    public boolean insert(TypeBiere objet) {
+    public boolean insert(Type objet) {
         return false;
     }
 
     @Override
-    public boolean update(TypeBiere object) {
+    public boolean update(Type object) {
         return false;
     }
 
     @Override
-    public boolean delete(TypeBiere object) {
+    public boolean delete(Type object) {
         return false;
     }
 }
