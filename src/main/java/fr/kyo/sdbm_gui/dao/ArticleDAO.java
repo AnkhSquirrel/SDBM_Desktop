@@ -131,6 +131,7 @@ public class ArticleDAO extends DAO<Article, Article> {
             else { preparedStatement.setInt(7, article.getType().getId());}
             preparedStatement.setInt(8, article.getStock());
 
+
             preparedStatement.executeUpdate();
             ResultSet rs = preparedStatement.getGeneratedKeys();
             rs.close();
