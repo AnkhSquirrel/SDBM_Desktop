@@ -84,7 +84,7 @@ public class GestionArticleController {
         } else {
             paysSearch.setItems(FXCollections.observableArrayList(serviceArticle.getPaysFiltre()));
         }
-        paysSearch.getItems().add(0,new Pays("", "Choisir un pays", new Continent()));
+        paysSearch.getItems().add(0,new Pays(0, "Choisir un pays", new Continent()));
         paysSearch.getSelectionModel().select(0);
         filterArticle();
     }
