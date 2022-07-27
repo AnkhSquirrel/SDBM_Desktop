@@ -1,6 +1,7 @@
 package fr.kyo.sdbm_gui;
 
 
+import fr.kyo.sdbm_gui.metier.Article;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -12,15 +13,13 @@ import java.io.IOException;
 
 public class MenuApp extends Application {
     private Stage primaryStage;
-
+    GestionDetailArticle gestionDetailArticle;
     public static void main(String[] args) {
         launch(args);
     }
-
     public Stage getPrimaryStage() {
         return primaryStage;
     }
-
 
     @Override
     public void start(Stage primaryStage) {
@@ -28,7 +27,6 @@ public class MenuApp extends Application {
         this.primaryStage.setTitle("Gestion des Marques");
         showMarque();
     }
-
     private void showMarque() {
         try {
             // Chargement du fichier fxml
@@ -47,6 +45,8 @@ public class MenuApp extends Application {
             Scene scene = new Scene(borderPane);
             primaryStage.setScene(scene);
 
+            gestionDetailArticle = loader1.getController();
+
             GestionArticleController controller = loader.getController();
             controller.setMenuApp(this);
 
@@ -54,6 +54,9 @@ public class MenuApp extends Application {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
 
+    public void showArticleDetail(Article article){
+        gestionDetailArticle.showDetail(article);
     }
 }

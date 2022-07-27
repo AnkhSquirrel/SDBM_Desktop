@@ -91,6 +91,11 @@ public class GestionArticleController {
         typeSearch.setItems(FXCollections.observableArrayList(serviceArticle.getFilteredType()));
         typeSearch.valueProperty().addListener(observable -> filterArticle());
 
+        articleTable.getSelectionModel().selectedItemProperty().addListener(observable -> showDetail());
+    }
+
+    private void showDetail() {
+        menuApp.showArticleDetail(articleTable.getSelectionModel().selectedItemProperty().getValue());
     }
 
     public void setMenuApp(MenuApp menuApp) {
