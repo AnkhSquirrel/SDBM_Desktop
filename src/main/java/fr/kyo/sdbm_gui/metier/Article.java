@@ -10,14 +10,15 @@ public class Article
 	private Integer volume;
 	private Float titrage;
 	private Float prixAchat;
+	private int stock;
 	private Marque marque;
 	private Couleur couleur;
-	private TypeBiere typeBiere;
+	private Type type;
 	
 	public Article()
 	{
 		couleur = new Couleur();
-		typeBiere = new TypeBiere();
+		type = new Type();
 		marque = new Marque();
 	}
 
@@ -26,7 +27,7 @@ public class Article
 		this.id = id;
 		this.libelle = libelle;
 		couleur = new Couleur();
-		typeBiere = new TypeBiere();
+		type = new Type();
 		marque = new Marque();
 	}
 
@@ -110,16 +111,6 @@ public class Article
 		this.marque = marque;
 	}
 
-	public TypeBiere getTypeBiere()
-	{
-		return typeBiere;
-	}
-
-	public void setTypeBiere(TypeBiere typeBiere)
-	{
-		this.typeBiere = typeBiere;
-	}
-
 	public Float getPrixAchat()
 	{
 		return prixAchat;
@@ -130,8 +121,24 @@ public class Article
 		this.prixAchat = prixAchat;
 	}
 
+	public int getStock() {
+		return stock;
+	}
+
+	public void setStock(int stock) {
+		this.stock = stock;
+	}
+
 	public FloatProperty prixAchatProperty()
 	{
 		return new SimpleFloatProperty(prixAchat);
+	}
+
+	public Type getType() {
+		return type;
+	}
+
+	public void setType(Type type) {
+		this.type = type;
 	}
 }
