@@ -30,4 +30,5 @@ public class DaoFactory {
     public static ArticleDAO getArticleDAO() {
         return new ArticleDAO(connexion);
     }
+
 }

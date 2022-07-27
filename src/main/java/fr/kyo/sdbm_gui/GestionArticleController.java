@@ -37,7 +37,8 @@ public class GestionArticleController {
     @FXML
     private ComboBox<Continent> continentSearch;
     @FXML
-
+    private ComboBox<Integer> volumeSearch;
+    @FXML
     private MenuApp menuApp;
 
     private ServiceArticle serviceArticle;
@@ -62,6 +63,9 @@ public class GestionArticleController {
 
         fabricantSearch.setItems(FXCollections.observableArrayList(serviceArticle.getFabricantFiltre()));
         fabricantSearch.valueProperty().addListener(observable -> filterArticle());
+
+        volumeSearch.setItems(FXCollections.observableArrayList(serviceArticle.getFilteredVolume()));
+        volumeSearch.valueProperty().addListener(observable -> filterArticle());
 
     }
 

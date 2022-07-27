@@ -41,6 +41,22 @@ public class ArticleDAO extends DAO<Article, Article> {
         return liste;
     }
 
+    public ArrayList<Integer> getVolume() {
+        ArrayList<Integer> liste = new ArrayList<>();
+        try (Statement stmt = connexion.createStatement()) {
+            String strCmd = "SELECT distinct volume from Article order by volume";
+            ResultSet rs = stmt.executeQuery(strCmd);
+            while (rs.next()) {
+                liste.add(rs.getInt(1));
+            }
+            rs.close();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        return liste;
+    }
+
     @Override
     public ArrayList<Article> getLike(ArticleSearch articleSearch){
         ResultSet rs;
