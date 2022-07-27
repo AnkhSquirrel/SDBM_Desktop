@@ -1,6 +1,7 @@
 package fr.kyo.sdbm_gui;
 
 import fr.kyo.sdbm_gui.metier.*;
+import fr.kyo.sdbm_gui.service.ArticleSearch;
 import fr.kyo.sdbm_gui.service.ServiceArticle;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -86,6 +87,16 @@ public class GestionArticleController {
 
     @FXML
     private void filterArticle() {
+        ArticleSearch articleSearch = new ArticleSearch();
+        articleSearch.setLibelle(libelleSearch.getText());
+
+        if (paysSearch.getSelectionModel().getSelectedItem() != null)
+            articleSearch.setPays(paysSearch.getSelectionModel().getSelectedItem());
+        if (continentSearch.getSelectionModel().getSelectedItem() != null)
+            articleSearch.setContinent(continentSearch.getSelectionModel().getSelectedItem());
+        if (fabricantSearch.getSelectionModel().getSelectedItem() != null)
+            articleSearch.setFabricant(fabricantSearch.getSelectionModel().getSelectedItem());
+
         articleTable.setItems(FXCollections.observableArrayList(serviceArticle.getFilteredArticles()));
     }
 }
