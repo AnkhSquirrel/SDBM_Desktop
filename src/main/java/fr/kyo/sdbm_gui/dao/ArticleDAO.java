@@ -117,8 +117,27 @@ public class ArticleDAO extends DAO<Article, Article> {
     }
 
     @Override
-    public boolean insert(Article objet) {
-        return false;
+    public boolean insert(Article article) {
+        try {
+            String requete = "INSERT INTO ARTICLE VALUES (?,?,?,?,?,?,?,?)";
+            PreparedStatement  preparedStatement = connexion().prepareStatement(requete, Statement.RETURN_GENERATED_KEYS);
+            preparedStatement.setString(1, article.getLibelle());
+            preparedStatement.setFloat(2, article.getPrixAchat());
+            preparedStatement.setInt(3, article.getVolume());
+            preparedStatement.setFloat(4, article.getTitrage());
+            preparedStatement.setInt(5, article.getMarque().getId());
+            preparedStatement.setInt(6, article.getCouleur().getId());
+            preparedStatement.setInt(7, article.getType().getId());
+            preparedStatement.setInt(8, article.getStock());
+
+            preparedStatement.executeUpdate();
+            ResultSet rs = preparedStatement.getGeneratedKeys();
+            rs.close();
+            preparedStatement.close();
+            return true;
+        } catch (SQLException e) {
+            return false;
+        }
     }
 
     @Override
