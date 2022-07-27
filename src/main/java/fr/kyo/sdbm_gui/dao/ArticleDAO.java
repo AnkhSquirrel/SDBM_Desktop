@@ -1,10 +1,10 @@
 package fr.kyo.sdbm_gui.dao;
 
+import fr.kyo.sdbm_gui.metier.*;
+import fr.kyo.sdbm_gui.service.ArticleSearch;
 import fr.kyo.sdbm_gui.metier.Article;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 
 public class ArticleDAO extends DAO<Article, Article> {
@@ -42,8 +42,33 @@ public class ArticleDAO extends DAO<Article, Article> {
     }
 
     @Override
-    public ArrayList<Article> getLike(Article objet) {
-        return null;
+    public ArrayList<Article> getLike(ArticleSearch articleSearch){
+        ResultSet rs;
+        ArrayList<Marque> liste = new ArrayList<>();
+        String procedureStockee = "{call dbo.SP_QBE_VUE_ARTICLE (?,?,?,?)}";
+        try (CallableStatement cStmt = this.connexion.prepareCall(procedureStockee))
+        {
+            cStmt.setString(1, articleSearch.getLibelle());
+            cStmt.setInt(2, articleSearch.getFabricant().getId());
+            cStmt.setString(3, articleSearch.getPays().getId());
+            cStmt.setInt(4, articleSearch.getContinent().getId());
+
+            cStmt.execute();
+            rs = cStmt.getResultSet();
+
+            while (rs.next())
+            {
+                // création d'un nouvel article à partir d'une ligne du resultset
+                Marque newMarque = new Marque();
+                newMarque.setId(rs.getInt(1));
+                newMarque.setLibelle(rs.getString(2));
+                newMarque.setPays(new Pays(rs.getString(3), rs.getString(4), new Continent(rs.getInt(5), rs.getString(6))));
+                newMarque.setFabricant(new Fabricant());
+                newMarque.getFabricant().setId(rs.getInt(7));
+                newMarque.getFabricant().setLibelle(rs.getString(8));
+                liste.add(newMarque);
+            }
+            rs.close();
     }
 
     @Override
