@@ -52,7 +52,7 @@ public class ServiceArticle
 
 	public ArrayList<Couleur> getFilteredCouleur()
 	{
-
+ 		return DaoFactory.getCouleurDAO().getAll();
 	}
 
 }

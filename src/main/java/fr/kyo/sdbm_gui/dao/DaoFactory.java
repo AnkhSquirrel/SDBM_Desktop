@@ -30,4 +30,8 @@ public class DaoFactory {
     public static ArticleDAO getArticleDAO() {
         return new ArticleDAO(connexion);
     }
+
+    public static CouleurDAO getCouleurDAO() {
+        return new CouleurDAO(connexion);
+    }
 }

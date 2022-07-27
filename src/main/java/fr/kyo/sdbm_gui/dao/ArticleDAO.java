@@ -79,7 +79,6 @@ public class ArticleDAO extends DAO<Article, Article> {
 
             cStmt.execute();
             rs = cStmt.getResultSet();
-            System.out.println(articleSearch.getType().getId());
 
             while (rs.next())
             {

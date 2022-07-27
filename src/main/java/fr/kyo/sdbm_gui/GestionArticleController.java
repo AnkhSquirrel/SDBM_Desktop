@@ -42,7 +42,7 @@ public class GestionArticleController {
     @FXML
     private RangeSlider rangeSliderTitrage;
     @FXML
-    private ComboBox<Integer> couleurSearch;
+    private ComboBox<Couleur> couleurSearch;
 
     @FXML
     private MenuApp menuApp;
@@ -77,6 +77,9 @@ public class GestionArticleController {
         rangeSliderTitrage.setHighValue(26);
         rangeSliderTitrage.lowValueProperty().addListener(observable -> filterArticle());
         rangeSliderTitrage.highValueProperty().addListener(observable -> filterArticle());
+
+        couleurSearch.setItems(FXCollections.observableArrayList(serviceArticle.getFilteredCouleur()));
+        couleurSearch.valueProperty().addListener(observable -> filterArticle());
 
     }
 
@@ -115,6 +118,9 @@ public class GestionArticleController {
             articleSearch.setVolume(volumeSearch.getSelectionModel().getSelectedItem());
         articleSearch.setTitrageMin((float) rangeSliderTitrage.getLowValue());
         articleSearch.setTitrageMax((float) rangeSliderTitrage.getHighValue());
+
+        if (couleurSearch.getSelectionModel().getSelectedItem() != null)
+            articleSearch.setCouleur(couleurSearch.getSelectionModel().getSelectedItem());
 
 
 
