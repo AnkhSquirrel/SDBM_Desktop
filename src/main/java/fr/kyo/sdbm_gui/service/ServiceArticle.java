@@ -5,7 +5,7 @@ import fr.kyo.sdbm_gui.dao.DaoFactory;
 import fr.kyo.sdbm_gui.metier.*;
 
 import java.util.ArrayList;
-
+import java.util.List;
 
 
 public class ServiceArticle
@@ -16,6 +16,7 @@ public class ServiceArticle
 	private ArrayList<Couleur> couleurFiltre;
 	private ArrayList<Marque> marqueFiltre;
 	private ArrayList<Type> typeFiltre;
+
 	public ServiceArticle()
 	{
 		paysFiltre = DaoFactory.getPaysDAO().getAll();
@@ -44,33 +45,33 @@ public class ServiceArticle
 	}
 
 
-	public ArrayList<Pays> getPaysFiltre()
+	public List<Pays> getPaysFiltre()
 	{
 		return paysFiltre;
 	}
 
-	public ArrayList<Continent> getContinentFiltre()
+	public List<Continent> getContinentFiltre()
 	{
 		return continentFiltre;
 	}
 
 
-	public ArrayList<Fabricant> getFabricantFiltre()
+	public List<Fabricant> getFabricantFiltre()
 	{
 		return fabricantFiltre;
 	}
 
-	public ArrayList<Article> getFilteredArticles(ArticleSearch articleSearch)
+	public List<Article> getFilteredArticles(ArticleSearch articleSearch)
 	{
 		return DaoFactory.getArticleDAO().getLike(articleSearch);
 	}
 
-	public ArrayList<Integer> getFilteredVolume()
+	public List<Integer> getFilteredVolume()
 	{
 		return DaoFactory.getArticleDAO().getVolume();
 	}
 
-	public ArrayList<Couleur> getFilteredCouleur()
+	public List<Couleur> getFilteredCouleur()
 	{
  		return couleurFiltre;
 	}
