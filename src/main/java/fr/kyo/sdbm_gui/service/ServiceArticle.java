@@ -10,17 +10,38 @@ import java.util.List;
 
 public class ServiceArticle
 {
-	private final ArrayList<Pays> paysFiltre;
-	private final ArrayList<Continent> continentFiltre;
-	private final ArrayList<Fabricant> fabricantFiltre;
+	private ArrayList<Pays> paysFiltre;
+	private ArrayList<Continent> continentFiltre;
+	private ArrayList<Fabricant> fabricantFiltre;
+	private ArrayList<Couleur> couleurFiltre;
+	private ArrayList<Marque> marqueFiltre;
+	private ArrayList<Type> typeFiltre;
+
 	public ServiceArticle()
 	{
 		paysFiltre = DaoFactory.getPaysDAO().getAll();
+		paysFiltre.add(0,new Pays(0, "Choisir un pays", new Continent()));
+
 		continentFiltre = DaoFactory.getContinentDAO().getAll();
+		continentFiltre.add(0,new Continent(0, "Choisir un continent"));
+
 		fabricantFiltre = DaoFactory.getFabricantDAO().getAll();
-		Fabricant fabricant = new Fabricant();
-		fabricant.setLibelle("Choisir un fabricant");
-		fabricantFiltre.add(0, fabricant);
+		fabricantFiltre.add(0, new Fabricant(0, "Choisir un fabricant"));
+
+		couleurFiltre = DaoFactory.getCouleurDAO().getAll();
+		couleurFiltre.add(0, new Couleur(0, "Choisir une couleur"));
+
+		typeFiltre = DaoFactory.getTypeDAO().getAll();
+		typeFiltre.add(0, new Type(0, "Choisir un type"));
+
+		marqueFiltre = DaoFactory.getMarqueDAO().getAll();
+		Marque marque = new Marque();
+		marque.setId(0);
+		marque.setLibelle("Choisir une marque ");
+		marqueFiltre.add(0, marque);
+
+
+
 	}
 
 
@@ -52,17 +73,17 @@ public class ServiceArticle
 
 	public List<Couleur> getFilteredCouleur()
 	{
- 		return DaoFactory.getCouleurDAO().getAll();
+ 		return couleurFiltre;
 	}
 
 	public ArrayList<Marque> getFilteredMarque()
 	{
-		return DaoFactory.getMarqueDAO().getAll();
+		return marqueFiltre;
 	}
 
 	public ArrayList<Type> getFilteredType()
 	{
-		return DaoFactory.getTypeDAO().getAll();
+		return typeFiltre;
 	}
 
 }

@@ -65,7 +65,6 @@ public class GestionArticleController {
 
         // Initialisation des comboBox
         continentSearch.setItems(FXCollections.observableArrayList(serviceArticle.getContinentFiltre()));
-        continentSearch.getItems().add(0,new Continent(0, "Choisir un continent"));
         continentSearch.valueProperty().addListener(observable -> filterContinent());
 
         paysSearch.setItems(FXCollections.observableArrayList(serviceArticle.getPaysFiltre()));
@@ -98,6 +97,19 @@ public class GestionArticleController {
         menuApp.showArticleDetail(articleTable.getSelectionModel().selectedItemProperty().getValue());
     }
 
+    @FXML
+    private void reset() {
+        continentSearch.getSelectionModel().selectFirst();
+        paysSearch.getSelectionModel().selectFirst();
+        fabricantSearch.getSelectionModel().selectFirst();
+        volumeSearch.getSelectionModel().selectFirst();
+        couleurSearch.getSelectionModel().selectFirst();
+        marqueSearch.getSelectionModel().selectFirst();
+        typeSearch.getSelectionModel().selectFirst();
+        rangeSliderTitrage.setLowValue(0.5);
+        rangeSliderTitrage.setHighValue(26);
+    }
+
     public void setMenuApp(MenuApp menuApp) {
         this.menuApp = menuApp;
         filterArticle();
@@ -113,7 +125,6 @@ public class GestionArticleController {
         } else {
             paysSearch.setItems(FXCollections.observableArrayList(serviceArticle.getPaysFiltre()));
         }
-        paysSearch.getItems().add(0,new Pays(0, "Choisir un pays", new Continent()));
         paysSearch.getSelectionModel().select(0);
         filterArticle();
     }
@@ -139,9 +150,6 @@ public class GestionArticleController {
             articleSearch.setType(typeSearch.getSelectionModel().getSelectedItem());
         if (marqueSearch.getSelectionModel().getSelectedItem() != null)
             articleSearch.setMarque(marqueSearch.getSelectionModel().getSelectedItem());
-
-
-
         articleTable.setItems(FXCollections.observableArrayList(serviceArticle.getFilteredArticles(articleSearch)));
     }
 }
