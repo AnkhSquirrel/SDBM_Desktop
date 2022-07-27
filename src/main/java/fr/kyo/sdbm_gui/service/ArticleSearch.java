@@ -4,8 +4,12 @@ import fr.kyo.sdbm_gui.metier.*;
 
 
 public class ArticleSearch {
-    private int id;
-    private String nom;
+    private Integer id;
+    private String libelle;
+    private Integer volume;
+    private Float titrageMin;
+    private Float titrageMax;
+    private Float prixAchat;
     private Pays pays;
     private Continent continent;
     private Marque marque;
@@ -22,20 +26,52 @@ public class ArticleSearch {
         type = new Type();
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public String getNom() {
-        return nom;
+    public String getLibelle() {
+        return libelle;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
+    public void setLibelle(String libelle) {
+        this.libelle = libelle;
+    }
+
+    public Integer getVolume() {
+        return volume;
+    }
+
+    public void setVolume(Integer volume) {
+        this.volume = volume;
+    }
+
+    public Float getTitrageMin() {
+        return titrageMin;
+    }
+
+    public void setTitrageMin(Float titrageMin) {
+        this.titrageMin = titrageMin;
+    }
+
+    public Float getTitrageMax() {
+        return titrageMax;
+    }
+
+    public void setTitrageMax(Float titrageMax) {
+        this.titrageMax = titrageMax;
+    }
+
+    public Float getPrixAchat() {
+        return prixAchat;
+    }
+
+    public void setPrixAchat(Float prixAchat) {
+        this.prixAchat = prixAchat;
     }
 
     public Pays getPays() {
