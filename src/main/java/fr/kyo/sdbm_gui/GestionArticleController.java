@@ -38,7 +38,7 @@ public class GestionArticleController {
     @FXML
     private ComboBox<Continent> continentSearch;
     @FXML
-    private ComboBox<Integer> volumeSearch;
+    private ComboBox<Volume> volumeSearch;
     @FXML
     private RangeSlider rangeSliderTitrage;
     @FXML
@@ -141,7 +141,7 @@ public class GestionArticleController {
         if (fabricantSearch.getSelectionModel().getSelectedItem() != null)
             articleSearch.setFabricant(fabricantSearch.getSelectionModel().getSelectedItem());
         if (volumeSearch.getSelectionModel().getSelectedItem() != null)
-            articleSearch.setVolume(volumeSearch.getSelectionModel().getSelectedItem());
+            articleSearch.setVolume(volumeSearch.getSelectionModel().getSelectedItem().getVolume());
         articleSearch.setTitrageMin((float) rangeSliderTitrage.getLowValue());
         articleSearch.setTitrageMax((float) rangeSliderTitrage.getHighValue());
         if (couleurSearch.getSelectionModel().getSelectedItem() != null)

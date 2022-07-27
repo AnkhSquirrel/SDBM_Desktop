@@ -41,13 +41,14 @@ public class ArticleDAO extends DAO<Article, Article> {
         return liste;
     }
 
-    public ArrayList<Integer> getVolume() {
-        ArrayList<Integer> liste = new ArrayList<>();
+    public ArrayList<Volume> getVolume() {
+        ArrayList<Volume> liste = new ArrayList<>();
         try (Statement stmt = connexion.createStatement()) {
             String strCmd = "SELECT distinct volume from Article order by volume";
             ResultSet rs = stmt.executeQuery(strCmd);
             while (rs.next()) {
-                liste.add(rs.getInt(1));
+                Volume volume = new Volume(rs.getInt(1), String.valueOf(rs.getInt(1)));
+                liste.add(volume);
             }
             rs.close();
         }

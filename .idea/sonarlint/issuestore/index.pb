@@ -18,5 +18,3 @@ c
 3src/main/java/fr/kyo/sdbm_gui/metier/Fabricant.java,7\0\70fc6fe35dacdd1633f11ece48385afa028a35f0
 ^
 .src/main/java/fr/kyo/sdbm_gui/dao/PaysDAO.java,0\3\039d571bcbbedae539e6032c449b781a99d2874b
-h
-8src/main/java/fr/kyo/sdbm_gui/service/ArticleSearch.java,b\8\b85bca3dc3c0275b725bb0f267a833afec8abe99

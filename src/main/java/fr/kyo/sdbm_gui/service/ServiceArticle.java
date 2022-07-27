@@ -16,6 +16,7 @@ public class ServiceArticle
 	private ArrayList<Couleur> couleurFiltre;
 	private ArrayList<Marque> marqueFiltre;
 	private ArrayList<Type> typeFiltre;
+	private ArrayList<Volume> volumesFiltre;
 
 	public ServiceArticle()
 	{
@@ -33,6 +34,9 @@ public class ServiceArticle
 
 		typeFiltre = DaoFactory.getTypeDAO().getAll();
 		typeFiltre.add(0, new Type(0, "Choisir un type"));
+
+		volumesFiltre = DaoFactory.getArticleDAO().getVolume();;
+		volumesFiltre.add(0, new Volume(0, "Choisir un Volume"));
 
 		marqueFiltre = DaoFactory.getMarqueDAO().getAll();
 		Marque marque = new Marque();
@@ -66,9 +70,9 @@ public class ServiceArticle
 		return DaoFactory.getArticleDAO().getLike(articleSearch);
 	}
 
-	public List<Integer> getFilteredVolume()
+	public List<Volume> getFilteredVolume()
 	{
-		return DaoFactory.getArticleDAO().getVolume();
+		return volumesFiltre;
 	}
 
 	public List<Couleur> getFilteredCouleur()
