@@ -40,9 +40,19 @@ public class ServiceArticle
 		return fabricantFiltre;
 	}
 
-	public ArrayList<Article> getFilteredArticles()
+	public ArrayList<Article> getFilteredArticles(ArticleSearch articleSearch)
 	{
-		return DaoFactory.getArticleDAO().getAll();
+		return DaoFactory.getArticleDAO().getLike(articleSearch);
+	}
+
+	public ArrayList<Integer> getFilteredVolume()
+	{
+		return DaoFactory.getArticleDAO().getVolume();
+	}
+
+	public ArrayList<Couleur> getFilteredCouleur()
+	{
+
 	}
 
 }

@@ -22,6 +22,7 @@ public class ArticleDAO extends DAO<Article, Article> {
         ArrayList<Article> liste = new ArrayList<>();
         try (Statement stmt = connexion.createStatement()) {
             String strCmd = "SELECT id_article, nom_article, titrage, volume, prix_achat from Article order by nom_article";
+
             ResultSet rs = stmt.executeQuery(strCmd);
             while (rs.next()) {
                 Article article = new Article();
@@ -40,16 +41,33 @@ public class ArticleDAO extends DAO<Article, Article> {
         return liste;
     }
 
+    public ArrayList<Integer> getVolume() {
+        ArrayList<Integer> liste = new ArrayList<>();
+        try (Statement stmt = connexion.createStatement()) {
+            String strCmd = "SELECT distinct volume from Article order by volume";
+            ResultSet rs = stmt.executeQuery(strCmd);
+            while (rs.next()) {
+                liste.add(rs.getInt(1));
+            }
+            rs.close();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        return liste;
+    }
+
     public ArrayList<Article> getLike(ArticleSearch articleSearch){
         ResultSet rs;
         ArrayList<Article> liste = new ArrayList<>();
-        String procedureStockee = "{call dbo.SP_QBE_VUE_ARTICLE (?,?,?,?)}";
+        String procedureStockee = "{call dbo.SP_QBE_VUE_ARTICLE (?,?,?,?,?,?,?,?,?,?,?,?)}";
+
         try (CallableStatement cStmt = this.connexion.prepareCall(procedureStockee))
         {
             cStmt.setString(1, articleSearch.getLibelle());
             cStmt.setInt(2, articleSearch.getVolume());
             cStmt.setFloat(3, articleSearch.getTitrageMin());
-            cStmt.setFloat(4, articleSearch.getTitrageMin());
+            cStmt.setFloat(4, articleSearch.getTitrageMax());
             cStmt.setInt(5, articleSearch.getMarque().getId());
             cStmt.setInt(6, articleSearch.getFabricant().getId());
             cStmt.setInt(7,articleSearch.getPays().getId());
@@ -61,6 +79,7 @@ public class ArticleDAO extends DAO<Article, Article> {
 
             cStmt.execute();
             rs = cStmt.getResultSet();
+            System.out.println(articleSearch.getType().getId());
 
             while (rs.next())
             {

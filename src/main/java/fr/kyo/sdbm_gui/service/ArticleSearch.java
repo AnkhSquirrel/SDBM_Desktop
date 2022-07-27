@@ -24,6 +24,10 @@ public class ArticleSearch {
         fabricant = new Fabricant();
         couleur = new Couleur();
         type = new Type();
+        volume = 0;
+        titrageMax = 0f;
+        titrageMin = 0f;
+        prixAchat = 0f;
     }
 
     public Integer getId() {
