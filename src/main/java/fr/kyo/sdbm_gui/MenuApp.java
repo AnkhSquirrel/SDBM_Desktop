@@ -5,6 +5,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -35,7 +36,15 @@ public class MenuApp extends Application {
             loader.setLocation(MenuApp.class.getResource("GestionArticle.fxml"));
             AnchorPane menuLayout = loader.load();
 
-            Scene scene = new Scene(menuLayout);
+            FXMLLoader loader1 = new FXMLLoader();
+            loader1.setLocation(MenuApp.class.getResource("DetailsArticle.fxml"));
+            AnchorPane detailLayout = loader1.load();
+
+            BorderPane borderPane = new BorderPane();
+            borderPane.setLeft(menuLayout);
+            borderPane.setRight(detailLayout);
+
+            Scene scene = new Scene(borderPane);
             primaryStage.setScene(scene);
 
             GestionArticleController controller = loader.getController();
