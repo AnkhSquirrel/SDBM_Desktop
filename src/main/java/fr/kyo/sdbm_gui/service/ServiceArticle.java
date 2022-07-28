@@ -59,9 +59,9 @@ public class ServiceArticle
 		return fabricantFiltre;
 	}
 
-	public List<Article> getFilteredArticles(ArticleSearch articleSearch)
+	public List<Article> getFilteredArticles(ArticleSearch articleSearch, int page)
 	{
-		return DaoFactory.getArticleDAO().getLike(articleSearch);
+		return DaoFactory.getArticleDAO().getLike(articleSearch, page);
 	}
 
 	public List<Volume> getFilteredVolume()
