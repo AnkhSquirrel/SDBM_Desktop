@@ -3,6 +3,7 @@ package fr.kyo.sdbm_gui;
 import fr.kyo.sdbm_gui.metier.*;
 import fr.kyo.sdbm_gui.service.ArticleSearch;
 import fr.kyo.sdbm_gui.service.ServiceArticle;
+import javafx.beans.property.FloatProperty;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
@@ -23,7 +24,7 @@ public class GestionArticleController {
     @FXML
     private TableColumn<Article, String> volumeColumn;
     @FXML
-    private TableColumn<Article, String> titrageColumn;
+    private TableColumn<Article, Float> titrageColumn;
     @FXML
     private TableColumn<Article, String> prixAchatColumn;
 
@@ -59,7 +60,7 @@ public class GestionArticleController {
         serviceArticle = new ServiceArticle();
         idColumn.setCellValueFactory(cellData -> cellData.getValue().idProperty().asObject());
         nomColumn.setCellValueFactory(cellData -> cellData.getValue().libelleProperty());
-        titrageColumn.setCellValueFactory(cellData -> cellData.getValue().titrageProperty().asString());
+        titrageColumn.setCellValueFactory(cellData -> cellData.getValue().titrageProperty().asObject());
         volumeColumn.setCellValueFactory(cellData -> cellData.getValue().volumeProperty().asString());
         prixAchatColumn.setCellValueFactory(cellData -> cellData.getValue().prixAchatProperty().asString());
 
