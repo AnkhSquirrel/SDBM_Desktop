@@ -9,6 +9,7 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import org.controlsfx.control.SearchableComboBox?>
 
 <AnchorPane prefHeight="607.0" prefWidth="652.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.kyo.sdbm_gui.ModifieArticle">
    <children>
@@ -48,7 +49,7 @@
             <TextField fx:id="textFieldPrix" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <TextField fx:id="textFieldTitrage" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <TextField fx:id="textFieldStock" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-            <ComboBox fx:id="comboBoxMarque" prefWidth="253.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <SearchableComboBox fx:id="comboBoxMarque" maxHeight="25.0" prefHeight="25.0" prefWidth="253.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
          </children>
       </GridPane>
       <ButtonBar layoutX="167.0" layoutY="520.0" prefHeight="60.0" prefWidth="251.0">

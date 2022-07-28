@@ -77,6 +77,7 @@ public class MenuApp extends Application {
             FXMLLoader fxmlLoader = new FXMLLoader(MenuApp.class.getResource("editArticle.fxml"));
             AnchorPane modalPane = fxmlLoader.load();
             ModifieArticle modifieArticle = fxmlLoader.getController();
+            modifieArticle.setMenuApp(this);
 
             modifieArticle.setArticle(article);
             modifieArticle.setGestionArticleController(gestionArticleController);

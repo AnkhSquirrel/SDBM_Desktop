@@ -9,6 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import org.controlsfx.control.RangeSlider?>
+<?import org.controlsfx.control.SearchableComboBox?>
 
 <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="559.0" prefWidth="943.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.kyo.sdbm_gui.GestionArticleController">
 	<children>
@@ -23,12 +24,12 @@
 										</Label>
 										<ComboBox fx:id="fabricantSearch" layoutX="26.0" layoutY="97.0" prefWidth="150.0" promptText="Choisir un fabricant" />
 										<ComboBox fx:id="continentSearch" layoutX="204.0" layoutY="97.0" prefWidth="150.0" promptText="Choisir un continent" />
-										<ComboBox fx:id="paysSearch" layoutX="383.0" layoutY="97.0" prefWidth="150.0" promptText="Choisir un pays" />
+            <SearchableComboBox fx:id="paysSearch" layoutX="383.0" layoutY="97.0" prefHeight="25.0" prefWidth="150.0" promptText="Choisir un pays" />
             <ComboBox fx:id="volumeSearch" layoutX="26.0" layoutY="130.0" prefWidth="150.0" promptText="Choisir un volume" />
             <RangeSlider fx:id="rangeSliderTitrage" blockIncrement="1.0" highValue="26.0" layoutX="209.0" layoutY="124.0" lowValue="1.0" majorTickUnit="5.0" max="26.0" min="0.5" showTickLabels="true" showTickMarks="true" />
             <ComboBox fx:id="couleurSearch" layoutX="383.0" layoutY="130.0" prefWidth="150.0" promptText="Choisir une couleur" />
             <ComboBox fx:id="typeSearch" layoutX="563.0" layoutY="97.0" prefWidth="150.0" promptText="Choisir un type" />
-            <ComboBox fx:id="marqueSearch" layoutX="563.0" layoutY="130.0" prefWidth="150.0" promptText="Choisir une marque" />
+            <SearchableComboBox fx:id="marqueSearch" layoutX="563.0" layoutY="130.0" prefHeight="25.0" prefWidth="150.0" promptText="Choisir une marque" />
 
             <Button layoutX="612.0" layoutY="41.0" mnemonicParsing="false" onAction="#reset" text="Reset" />
             <Button layoutX="852.0" layoutY="111.0" mnemonicParsing="false" onAction="#createArticle" text="Add +" />
