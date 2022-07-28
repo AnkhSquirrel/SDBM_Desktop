@@ -58,7 +58,7 @@ public class GestionDetailArticle {
 
     @FXML
     public void updateArticle(){
-        menuApp.updateArticle(article);
+        menuApp.openModalArticle(article);
     }
 
     public void showDetail(Article article) {
