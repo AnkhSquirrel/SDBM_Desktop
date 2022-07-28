@@ -116,12 +116,12 @@ public class ArticleDAO extends DAO<Article, Article> {
         return null;
     }
 
-@Override
-    public  boolean insert(Article article) {
+    @Override
+    public boolean insert(Article article) {
         try {
-            String requete = "INSERT INTO ARTICLE VALUES (?,?,?,?,?,?,?,?)";
+            String requete = "INSERT INTO ARTICLE (NOM_ARTICLE, PRIX_ACHAT, VOLUME, TITRAGE, ID_MARQUE, ID_COULEUR, ID_TYPE, STOCK) VALUES (?,?,?,?,?,?,?,?)";
             PreparedStatement  preparedStatement = connexion().prepareStatement(requete, Statement.RETURN_GENERATED_KEYS);
-            preparedStatement.setString(1, article.getLibelle());
+            preparedStatement.setString( 1 , article.getLibelle());
             preparedStatement.setFloat(2, article.getPrixAchat());
             preparedStatement.setInt(3, article.getVolume());
             preparedStatement.setFloat(4, article.getTitrage());
@@ -156,6 +156,7 @@ public class ArticleDAO extends DAO<Article, Article> {
             if (article.getType() == null) { preparedStatement.setNull(7 , Types.INTEGER);}
             else { preparedStatement.setInt(7, article.getType().getId());}
             preparedStatement.setInt(8, article.getStock());
+            preparedStatement.setInt(9, article.getId());
             preparedStatement.executeUpdate();
             ResultSet rs = preparedStatement.getGeneratedKeys();
             rs.close();

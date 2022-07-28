@@ -100,7 +100,8 @@ public class GestionArticleController {
     @FXML
     private void createArticle(){
         Article article = new Article();
-        menuApp.createModal(article);
+        article.setId(0);
+        menuApp.openModalArticle(article);
     }
 
     @FXML

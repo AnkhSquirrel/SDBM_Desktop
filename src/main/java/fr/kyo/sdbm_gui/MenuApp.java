@@ -58,33 +58,18 @@ public class MenuApp extends Application {
         }
     }
 
-    public void createModal(Article article) {
-        Stage modal = new Stage();
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(MenuApp.class.getResource("editArticle.fxml"));
-            AnchorPane modalPane = fxmlLoader.load();
-
-            modal.setScene(new Scene(modalPane));
-            modal.setResizable(false);
-            modal.initModality(Modality.WINDOW_MODAL);
-            modal.initOwner(primaryStage);
-
-            modal.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
     public void showArticleDetail(Article article){
         gestionDetailArticle.showDetail(article);
     }
 
-    public void updateArticle(Article article) {
+    public void openModalArticle(Article article) {
         Stage modal = new Stage();
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(MenuApp.class.getResource("editArticle.fxml"));
             AnchorPane modalPane = fxmlLoader.load();
-
+            ModifieArticle modifieArticle = fxmlLoader.getController();
+            modifieArticle.setArticle(article);
             modal.setScene(new Scene(modalPane));
             modal.setResizable(false);
             modal.initModality(Modality.WINDOW_MODAL);
