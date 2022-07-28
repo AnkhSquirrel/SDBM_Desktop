@@ -54,7 +54,7 @@
       <ButtonBar layoutX="167.0" layoutY="520.0" prefHeight="60.0" prefWidth="251.0">
          <buttons>
 
-            <Button layoutX="213.0" layoutY="19.0" mnemonicParsing="false" text="Cancel" />
+            <Button layoutX="213.0" layoutY="19.0" mnemonicParsing="false" onAction="#close" text="Cancel" />
             <Button mnemonicParsing="false" onAction="#createArticle" text="Save" />
 
          </buttons>
