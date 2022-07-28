@@ -7,6 +7,7 @@ import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 public class ModifieArticle {
     @FXML
@@ -25,10 +26,11 @@ public class ModifieArticle {
     private ComboBox<Type> comboBoxType;
     @FXML
     private ComboBox<Marque> comboBoxMarque;
+    private Boolean create ;
+    private Article article;
+    private GestionArticleController gestionArticleController;
+    private Stage modal;
 
-    Boolean create ;
-
-    Article article;
 
     @FXML
     public void createArticle(){
@@ -41,12 +43,22 @@ public class ModifieArticle {
         article.setType(comboBoxType.getSelectionModel().getSelectedItem());
         article.setStock((Integer.parseInt(textFieldStock.getText())));
         if (create) {
-            //DaoFactory.getArticleDAO().insert(article);
-            System.out.println(DaoFactory.getArticleDAO().insert(article));
+            DaoFactory.getArticleDAO().insert(article);
+<<<<<<<<< Temporary merge branch 1
+            close();
+=========
+>>>>>>>>> Temporary merge branch 2
         }
         else {
             DaoFactory.getArticleDAO().update(article);
+            close();
         }
+    }
+
+    @FXML
+    public void close(){
+        gestionArticleController.filterArticle();
+        modal.close();
     }
 
     public void initialize(){
@@ -65,7 +77,7 @@ public class ModifieArticle {
         } else {
             textFieldNom.setText(article.getLibelle());
             textFieldPrix.setText(String.valueOf(article.getPrixAchat()));
-            comboBoxVolume.getSelectionModel().select(article.getVolume());
+            comboBoxVolume.getSelectionModel().select(new Volume(article.getVolume(),String.valueOf(article.getVolume())));
             textFieldTitrage.setText(String.valueOf(article.getTitrage()));
             comboBoxMarque.getSelectionModel().select(article.getMarque());
             comboBoxCouleur.getSelectionModel().select(article.getCouleur());
@@ -76,5 +88,11 @@ public class ModifieArticle {
     }
 
 
+    public void setGestionArticleController(GestionArticleController gestionArticleController) {
+        this.gestionArticleController = gestionArticleController;
+    }
 
+    public void setModal(Stage modal) {
+        this.modal = modal;
+    }
 }
