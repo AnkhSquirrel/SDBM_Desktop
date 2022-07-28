@@ -7,6 +7,9 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 
 public class GestionDetailArticle {
+    MenuApp menuApp;
+
+    Article article;
     @FXML
     Label labelValue;
     @FXML
@@ -37,6 +40,10 @@ public class GestionDetailArticle {
         hideAll();
     }
 
+    public void setMenuApp(MenuApp menuApp){
+        this.menuApp = menuApp;
+    }
+
     public void hideAll(){
         for(Node label : gridPane.getChildren()){
             label.setVisible(false);
@@ -49,7 +56,13 @@ public class GestionDetailArticle {
         }
     }
 
+    @FXML
+    public void updateArticle(){
+        menuApp.updateArticle(article);
+    }
+
     public void showDetail(Article article) {
+        this.article = article;
         labelValue.setText(article.getLibelle());
         titrageValue.setText(article.getTitrage().toString());
         volumeValue.setText(article.getVolume().toString());
