@@ -1,5 +1,6 @@
 package fr.kyo.sdbm_gui;
 
+import fr.kyo.sdbm_gui.dao.DAO;
 import fr.kyo.sdbm_gui.dao.DaoFactory;
 import fr.kyo.sdbm_gui.metier.*;
 import fr.kyo.sdbm_gui.service.ServiceArticle;
@@ -11,6 +12,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import org.controlsfx.control.SearchableComboBox;
 
 import java.io.IOException;
 
@@ -30,13 +32,14 @@ public class ModifieArticle {
     @FXML
     private ComboBox<Type> comboBoxType;
     @FXML
-    private ComboBox<Marque> comboBoxMarque;
+    private SearchableComboBox<Marque> comboBoxMarque;
     @FXML
     private Label nomFenetre;
     private Boolean create ;
     private Article article;
     private GestionArticleController gestionArticleController;
     private Stage modal;
+    private MenuApp menuApp;
 
 
     @FXML
@@ -49,19 +52,13 @@ public class ModifieArticle {
 
             article.setMarque(comboBoxMarque.getSelectionModel().getSelectedItem());
 
+            article.getMarque().setFabricant(DaoFactory.getFabricantDAO().getByMarque(article.getMarque().getId()));
 
-            int id = DaoFactory.getFabricantDAO().getByMarque(article.getMarque().getId()).getId();
-            article.getMarque().setFabricant(DaoFactory.getFabricantDAO().getByMarque(id));
-
-            article.getMarque().getFabricant().setId(id);
-
-            String lib = DaoFactory.getFabricantDAO().getByMarque(article.getMarque().getId()).getLibelle();
-            article.getMarque().getFabricant().setLibelle(lib);
-
-
-
-            article.setCouleur(comboBoxCouleur.getSelectionModel().getSelectedItem());
-            article.setType(comboBoxType.getSelectionModel().getSelectedItem());
+            article.getMarque().setPays(DaoFactory.getPaysDAO().getByMarque(article.getMarque().getId()));
+            if(comboBoxCouleur.getSelectionModel().getSelectedItem().getId() != 0)
+                article.setCouleur(comboBoxCouleur.getSelectionModel().getSelectedItem());
+            if(comboBoxType.getSelectionModel().getSelectedItem().getId() != 0)
+                article.setType(comboBoxType.getSelectionModel().getSelectedItem());
             article.setStock((Integer.parseInt(textFieldStock.getText())));
 
             if (!( create? DaoFactory.getArticleDAO().insert(article) : DaoFactory.getArticleDAO().update(article) )) {
@@ -95,8 +92,11 @@ public class ModifieArticle {
     @FXML
     public void close(){
         gestionArticleController.filterArticle();
+        menuApp.showArticleDetail(article);
         modal.close();
     }
+
+
 
     public void initialize(){
         ServiceArticle serviceArticle = new ServiceArticle();
@@ -138,5 +138,9 @@ public class ModifieArticle {
 
     public void setModal(Stage modal) {
         this.modal = modal;
+    }
+
+    public void setMenuApp(MenuApp menuApp){
+        this.menuApp = menuApp;
     }
 }

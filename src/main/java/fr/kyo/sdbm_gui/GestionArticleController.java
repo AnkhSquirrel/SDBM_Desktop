@@ -11,6 +11,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import org.controlsfx.control.RangeSlider;
+import org.controlsfx.control.SearchableComboBox;
 
 
 public class GestionArticleController {
@@ -35,7 +36,7 @@ public class GestionArticleController {
     @FXML
     private ComboBox<Fabricant> fabricantSearch;
     @FXML
-    private ComboBox<Pays> paysSearch;
+    private SearchableComboBox<Pays> paysSearch;
     @FXML
     private ComboBox<Continent> continentSearch;
     @FXML
@@ -47,7 +48,7 @@ public class GestionArticleController {
     @FXML
     private ComboBox<Type> typeSearch;
     @FXML
-    private ComboBox<Marque> marqueSearch;
+    private SearchableComboBox<Marque> marqueSearch;
 
     @FXML
     private MenuApp menuApp;
@@ -69,7 +70,7 @@ public class GestionArticleController {
         continentSearch.valueProperty().addListener(observable -> filterContinent());
 
         paysSearch.setItems(FXCollections.observableArrayList(serviceArticle.getPaysFiltre()));
-        paysSearch.valueProperty().addListener(observable -> filterArticle());
+        paysSearch.getSelectionModel().selectedItemProperty().addListener(observable -> filterArticle());
 
         fabricantSearch.setItems(FXCollections.observableArrayList(serviceArticle.getFabricantFiltre()));
         fabricantSearch.valueProperty().addListener(observable -> filterFabricant());
@@ -86,7 +87,7 @@ public class GestionArticleController {
         couleurSearch.valueProperty().addListener(observable -> filterArticle());
 
         marqueSearch.setItems(FXCollections.observableArrayList(serviceArticle.getFilteredMarque()));
-        marqueSearch.valueProperty().addListener(observable -> filterArticle());
+        marqueSearch.getSelectionModel().selectedItemProperty().addListener(observable -> filterArticle());
 
         typeSearch.setItems(FXCollections.observableArrayList(serviceArticle.getFilteredType()));
         typeSearch.valueProperty().addListener(observable -> filterArticle());
@@ -95,7 +96,8 @@ public class GestionArticleController {
     }
 
     private void showDetail() {
-        menuApp.showArticleDetail(articleTable.getSelectionModel().selectedItemProperty().getValue());
+        if(!articleTable.getSelectionModel().isEmpty())
+            menuApp.showArticleDetail(articleTable.getSelectionModel().selectedItemProperty().getValue());
     }
     @FXML
     private void createArticle(){
@@ -150,6 +152,7 @@ public class GestionArticleController {
 
     @FXML
     public void filterArticle() {
+
         ArticleSearch articleSearch = new ArticleSearch();
         articleSearch.setLibelle(libelleSearch.getText());
 
@@ -170,5 +173,6 @@ public class GestionArticleController {
         if (marqueSearch.getSelectionModel().getSelectedItem() != null)
             articleSearch.setMarque(marqueSearch.getSelectionModel().getSelectedItem());
         articleTable.setItems(FXCollections.observableArrayList(serviceArticle.getFilteredArticles(articleSearch)));
+
     }
 }

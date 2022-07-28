@@ -64,6 +64,32 @@ public class PaysDAO extends DAO<Pays, Pays> {
 		return liste;
 	}
 
+	public Pays getByMarque(int pays) {
+		Pays paysbymarque;
+		try {
+
+			PreparedStatement pStmt = connexion
+					.prepareStatement("SELECT p.id_pays, p.nom_pays, c.ID_CONTINENT, c.NOM_CONTINENT from pays as p join marque as m on m.ID_PAYS = p.ID_PAYS join CONTINENT as c on c.ID_CONTINENT = p.ID_CONTINENT" +
+							" where m.ID_MARQUE =  ?");
+			// Determine the column set column
+
+			pStmt.setInt(1, pays);
+			rs = pStmt.executeQuery();
+
+			rs.next();
+			paysbymarque = new Pays(rs.getInt(1), rs.getString(2), new Continent(rs.getInt(3), rs.getString(4)));
+			rs.close();
+			return paysbymarque;
+		}
+
+		// Handle any errors that may have occurred.
+		catch (Exception e) {
+			e.printStackTrace();
+			return new Pays();
+		}
+
+	}
+
 	@Override
 	public Pays getByID(int id) {
 		// TODO Auto-generated method stub

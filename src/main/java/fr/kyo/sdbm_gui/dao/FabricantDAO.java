@@ -48,10 +48,15 @@ public class FabricantDAO extends DAO<Fabricant, Fabricant> {
 			PreparedStatement pStmt = connexion.prepareStatement("SELECT f.ID_FABRICANT, f.NOM_FABRICANT from FABRICANT as f join MARQUE as m on m.ID_FABRICANT = f.ID_FABRICANT where m.ID_MARQUE = ? ");
 			pStmt.setInt(1, marque);
 			rs = pStmt.executeQuery();
-			rs.next();
-			fabricant = new Fabricant(rs.getInt(1), rs.getString(2));
-			rs.close();
-			return fabricant;
+
+			if (rs.next()){
+				fabricant = new Fabricant(rs.getInt(1), rs.getString(2));
+				rs.close();
+				return fabricant;
+			}
+			else
+				return new Fabricant(0,"");
+
 		}
 
 		// Handle any errors that may have occurred.

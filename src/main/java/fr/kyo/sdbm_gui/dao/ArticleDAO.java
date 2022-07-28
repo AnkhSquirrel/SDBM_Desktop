@@ -132,8 +132,6 @@ public class ArticleDAO extends DAO<Article, Article> {
             else { preparedStatement.setInt(7, article.getType().getId());}
             preparedStatement.setInt(8, article.getStock());
             preparedStatement.executeUpdate();
-            ResultSet rs = preparedStatement.getGeneratedKeys();
-            rs.close();
             preparedStatement.close();
             return true;
         } catch (SQLException e) {
@@ -158,8 +156,6 @@ public class ArticleDAO extends DAO<Article, Article> {
             preparedStatement.setInt(8, article.getStock());
             preparedStatement.setInt(9, article.getId());
             preparedStatement.executeUpdate();
-            ResultSet rs = preparedStatement.getGeneratedKeys();
-            rs.close();
             preparedStatement.close();
             return true;
         } catch (SQLException e) {
@@ -176,7 +172,6 @@ public class ArticleDAO extends DAO<Article, Article> {
             int rowDeleted = preparedStatement.executeUpdate();
             return true;
         } catch (SQLException e) {
-            System.out.println("in catch");
             return false;
         }
     }
