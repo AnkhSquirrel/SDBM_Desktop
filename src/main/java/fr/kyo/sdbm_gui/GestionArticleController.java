@@ -97,6 +97,11 @@ public class GestionArticleController {
     private void showDetail() {
         menuApp.showArticleDetail(articleTable.getSelectionModel().selectedItemProperty().getValue());
     }
+    @FXML
+    private void createArticle(){
+        Article article = new Article();
+        menuApp.createModal(article);
+    }
 
     @FXML
     private void reset() {
