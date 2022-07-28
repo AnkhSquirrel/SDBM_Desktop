@@ -82,6 +82,14 @@ public class ModifieArticle {
             textFieldStock.setText(String.valueOf(article.getStock()));
             create = false;
         }
+        /*if(comboBoxVolume.getSelectionModel().getSelectedItem() == null)
+            comboBoxVolume.getSelectionModel().select(new Volume(0,"Choisir un Volume"));
+        if(comboBoxMarque.getSelectionModel().getSelectedItem() == null)
+            comboBoxMarque.getSelectionModel().select(new Marque(0,"Choisir une Marque"));
+        if(comboBoxType.getSelectionModel().getSelectedItem() == null)
+            comboBoxType.getSelectionModel().selectFirst();
+        if(comboBoxCouleur.getSelectionModel().getSelectedItem() == null)
+            comboBoxCouleur.getSelectionModel().selectFirst();*/
     }
 
 
