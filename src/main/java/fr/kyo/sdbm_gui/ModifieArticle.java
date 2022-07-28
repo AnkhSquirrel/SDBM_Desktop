@@ -65,7 +65,7 @@ public class ModifieArticle {
         } else {
             textFieldNom.setText(article.getLibelle());
             textFieldPrix.setText(String.valueOf(article.getPrixAchat()));
-            comboBoxVolume.getSelectionModel().select(article.getVolume());
+            comboBoxVolume.getSelectionModel().select(new Volume(article.getVolume(),String.valueOf(article.getVolume())));
             textFieldTitrage.setText(String.valueOf(article.getTitrage()));
             comboBoxMarque.getSelectionModel().select(article.getMarque());
             comboBoxCouleur.getSelectionModel().select(article.getCouleur());
