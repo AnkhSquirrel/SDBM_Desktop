@@ -44,7 +44,6 @@ public class ModifieArticle {
         article.setStock((Integer.parseInt(textFieldStock.getText())));
         if (create) {
             DaoFactory.getArticleDAO().insert(article);
-            close();
         }
         else {
             DaoFactory.getArticleDAO().update(article);
@@ -74,7 +73,7 @@ public class ModifieArticle {
         } else {
             textFieldNom.setText(article.getLibelle());
             textFieldPrix.setText(String.valueOf(article.getPrixAchat()));
-            comboBoxVolume.getSelectionModel().select(article.getVolume());
+            comboBoxVolume.getSelectionModel().select(new Volume(article.getVolume(),String.valueOf(article.getVolume())));
             textFieldTitrage.setText(String.valueOf(article.getTitrage()));
             comboBoxMarque.getSelectionModel().select(article.getMarque());
             comboBoxCouleur.getSelectionModel().select(article.getCouleur());
