@@ -7,6 +7,7 @@ import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TreeCell;
 
 public class ModifieArticle {
     @FXML
@@ -41,8 +42,7 @@ public class ModifieArticle {
         article.setType(comboBoxType.getSelectionModel().getSelectedItem());
         article.setStock((Integer.parseInt(textFieldStock.getText())));
         if (create) {
-            //DaoFactory.getArticleDAO().insert(article);
-            System.out.println(DaoFactory.getArticleDAO().insert(article));
+            DaoFactory.getArticleDAO().insert(article);
         }
         else {
             DaoFactory.getArticleDAO().update(article);
