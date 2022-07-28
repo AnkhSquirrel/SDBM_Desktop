@@ -64,6 +64,10 @@ public class ModifieArticle {
         comboBoxMarque.setItems(FXCollections.observableArrayList(DaoFactory.getMarqueDAO().getAll()));
         comboBoxType.setItems(FXCollections.observableArrayList(serviceArticle.getFilteredType()));
         comboBoxCouleur.setItems(FXCollections.observableArrayList(serviceArticle.getFilteredCouleur()));
+        comboBoxVolume.getSelectionModel().select(new Volume(0,"Choisir un Volume"));
+        comboBoxMarque.getSelectionModel().select(new Marque(0,"Choisir une Marque"));
+        comboBoxType.getSelectionModel().selectFirst();
+        comboBoxCouleur.getSelectionModel().selectFirst();
     }
 
 
@@ -74,22 +78,16 @@ public class ModifieArticle {
         } else {
             textFieldNom.setText(article.getLibelle());
             textFieldPrix.setText(String.valueOf(article.getPrixAchat()));
-            comboBoxVolume.getSelectionModel().select(new Volume(article.getVolume(),String.valueOf(article.getVolume())));
+            comboBoxVolume.getSelectionModel().select(new Volume(article.getVolume(), String.valueOf(article.getVolume())));
             textFieldTitrage.setText(String.valueOf(article.getTitrage()));
             comboBoxMarque.getSelectionModel().select(article.getMarque());
-            comboBoxCouleur.getSelectionModel().select(article.getCouleur());
-            comboBoxType.getSelectionModel().select(article.getType());
+            if(article.getCouleur().getId() != 0)
+                comboBoxCouleur.getSelectionModel().select(article.getCouleur());
+            if(article.getType().getId() != 0)
+                comboBoxType.getSelectionModel().select(article.getType());
             textFieldStock.setText(String.valueOf(article.getStock()));
             create = false;
         }
-        /*if(comboBoxVolume.getSelectionModel().getSelectedItem() == null)
-            comboBoxVolume.getSelectionModel().select(new Volume(0,"Choisir un Volume"));
-        if(comboBoxMarque.getSelectionModel().getSelectedItem() == null)
-            comboBoxMarque.getSelectionModel().select(new Marque(0,"Choisir une Marque"));
-        if(comboBoxType.getSelectionModel().getSelectedItem() == null)
-            comboBoxType.getSelectionModel().selectFirst();
-        if(comboBoxCouleur.getSelectionModel().getSelectedItem() == null)
-            comboBoxCouleur.getSelectionModel().selectFirst();*/
     }
 
 
