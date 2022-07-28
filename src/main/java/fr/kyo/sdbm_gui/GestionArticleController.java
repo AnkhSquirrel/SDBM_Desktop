@@ -177,9 +177,17 @@ public class GestionArticleController {
     @FXML
     public void pagePlus(){
         pages++;
+        filterArticle();
+        if(articleTable.getItems().size() == 0){
+           pageMoin();
+        }
     }
     @FXML
     public void pageMoin(){
-        pages--;
+        if(pages > 1){
+            pages--;
+            filterArticle();
+        }
+
     }
 }
