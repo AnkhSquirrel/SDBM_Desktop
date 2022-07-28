@@ -149,7 +149,7 @@ public class GestionArticleController {
     }
 
     @FXML
-    private void filterArticle() {
+    public void filterArticle() {
         ArticleSearch articleSearch = new ArticleSearch();
         articleSearch.setLibelle(libelleSearch.getText());
 
