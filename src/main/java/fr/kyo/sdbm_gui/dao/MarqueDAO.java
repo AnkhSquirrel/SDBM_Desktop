@@ -3,6 +3,7 @@ package fr.kyo.sdbm_gui.dao;
 import fr.kyo.sdbm_gui.metier.*;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -14,6 +15,8 @@ public class MarqueDAO extends DAO<Marque, Marque>
 	{
 		super(connexion);
 	}
+
+	private ResultSet rs;
 
 	@Override
 	public ArrayList<Marque> getAll(){
@@ -29,6 +32,27 @@ public class MarqueDAO extends DAO<Marque, Marque>
 			}
 			rs.close();
 		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		return liste;
+	}
+
+	public ArrayList<Marque> getByFabricant(int fabricant) {
+		ArrayList<Marque> liste = new ArrayList<>();
+		try {
+
+			PreparedStatement pStmt = connexion.prepareStatement("SELECT ID_MARQUE, NOM_MARQUE from Marque where ID_FABRICANT =  ?  order by NOM_MARQUE");
+			pStmt.setInt(1, fabricant);
+			rs = pStmt.executeQuery();
+
+			while (rs.next()) {
+				liste.add(new Marque(rs.getInt(1), rs.getString(2)));
+			}
+			rs.close();
+		}
+
+		// Handle any errors that may have occurred.
 		catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -173,10 +173,9 @@ public class ArticleDAO extends DAO<Article, Article> {
             PreparedStatement preparedStatement = connexion().prepareStatement(requete);
             preparedStatement.setInt(1, article.getId());
             int rowDeleted = preparedStatement.executeUpdate();
-            if (rowDeleted == 0)
-                article.setId(0);
             return true;
         } catch (SQLException e) {
+            System.out.println("in catch");
             return false;
         }
     }

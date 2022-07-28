@@ -18,16 +18,13 @@ public class FabricantDAO extends DAO<Fabricant, Fabricant> {
 		ArrayList<Fabricant> liste = new ArrayList<>();
 		try (Statement stmt = connexion.createStatement()) {
 
-
 			// Determine the column set column
 
 			String strCmd = "SELECT id_fabricant,nom_fabricant from fabricant order by nom_fabricant";
 			ResultSet rs = stmt.executeQuery(strCmd);
-
 			while (rs.next()) {
-				Fabricant fabricant = new Fabricant();
-				fabricant.setId(rs.getInt(1));
-				fabricant.setLibelle( rs.getString(2));
+				Fabricant fabricant = new Fabricant(rs.getInt(1), rs.getString(2));
+				fabricant.getMarques().addAll(DaoFactory.getMarqueDAO().getByFabricant(fabricant.getId()));
 				liste.add(fabricant);
 			}
 			rs.close();

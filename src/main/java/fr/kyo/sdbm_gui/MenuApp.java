@@ -1,10 +1,14 @@
 package fr.kyo.sdbm_gui;
 
 
+import fr.kyo.sdbm_gui.dao.ArticleDAO;
+import fr.kyo.sdbm_gui.dao.DaoFactory;
 import fr.kyo.sdbm_gui.metier.Article;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
@@ -94,5 +98,18 @@ public class MenuApp extends Application {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void deleteContact(Article article) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Supprimer");
+        alert.setHeaderText("Voulez vous vraiment supprimer l'article?");
+        alert.setContentText(article.getLibelle() + " " + article.getVolume());
+        alert.showAndWait().ifPresent(btnType -> {
+            if (btnType == ButtonType.OK) {
+                DaoFactory.getArticleDAO().delete(article);
+            }
+        });
+
     }
 }
