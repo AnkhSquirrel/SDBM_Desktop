@@ -9,6 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
@@ -30,7 +31,7 @@ public class MenuApp extends Application {
     @Override
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
-        this.primaryStage.setTitle("Gestion des Marques");
+        this.primaryStage.setTitle("Gestion des Articles");
         showMarque();
     }
     private void showMarque() {
@@ -56,6 +57,8 @@ public class MenuApp extends Application {
 
             gestionArticleController = loader.getController();
             gestionArticleController.setMenuApp(this);
+
+            primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("Isopropyl_alcohol.png")));
 
             primaryStage.show();
         } catch (IOException e) {
@@ -97,8 +100,19 @@ public class MenuApp extends Application {
         alert.setContentText(article.getLibelle() + " " + article.getVolume());
         alert.showAndWait().ifPresent(btnType -> {
             if (btnType == ButtonType.OK) {
-                DaoFactory.getArticleDAO().delete(article);
-                gestionArticleController.filterArticle();
+                if(DaoFactory.getArticleDAO().delete(article)){
+                    gestionArticleController.filterArticle();
+                } else {
+                    Alert alertError = new Alert(Alert.AlertType.ERROR);
+                    alertError.setTitle("Erreur");
+                    alertError.setHeaderText("Erreur! L'article n'a pu être supprimé.");
+                    alertError.showAndWait().ifPresent(btnTypeError -> {
+                        if (btnTypeError == ButtonType.OK) {
+                            alertError.close();
+                        }
+                    });
+                }
+
             }
         });
 

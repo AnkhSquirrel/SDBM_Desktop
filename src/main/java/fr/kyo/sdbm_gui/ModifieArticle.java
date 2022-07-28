@@ -5,9 +5,14 @@ import fr.kyo.sdbm_gui.metier.*;
 import fr.kyo.sdbm_gui.service.ServiceArticle;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class ModifieArticle {
     @FXML
@@ -26,6 +31,8 @@ public class ModifieArticle {
     private ComboBox<Type> comboBoxType;
     @FXML
     private ComboBox<Marque> comboBoxMarque;
+    @FXML
+    private Label nomFenetre;
     private Boolean create ;
     private Article article;
     private GestionArticleController gestionArticleController;
@@ -34,22 +41,55 @@ public class ModifieArticle {
 
     @FXML
     public void createArticle(){
-        article.setLibelle(textFieldNom.getText());
-        article.setPrixAchat((Float.valueOf(textFieldPrix.getText())));
-        article.setVolume(comboBoxVolume.getSelectionModel().getSelectedItem().getVolume());
-        article.setTitrage((Float.valueOf(textFieldTitrage.getText())));
-        article.setMarque(comboBoxMarque.getSelectionModel().getSelectedItem());
-        article.setCouleur(comboBoxCouleur.getSelectionModel().getSelectedItem());
-        article.setType(comboBoxType.getSelectionModel().getSelectedItem());
-        article.setStock((Integer.parseInt(textFieldStock.getText())));
-        if (create) {
-            DaoFactory.getArticleDAO().insert(article);
-            close();
+        try {
+            article.setLibelle(textFieldNom.getText());
+            article.setPrixAchat((Float.valueOf(textFieldPrix.getText())));
+            article.setVolume(comboBoxVolume.getSelectionModel().getSelectedItem().getVolume());
+            article.setTitrage((Float.valueOf(textFieldTitrage.getText())));
+
+            article.setMarque(comboBoxMarque.getSelectionModel().getSelectedItem());
+
+
+            int id = DaoFactory.getFabricantDAO().getByMarque(article.getMarque().getId()).getId();
+            article.getMarque().setFabricant(DaoFactory.getFabricantDAO().getByMarque(id));
+
+            article.getMarque().getFabricant().setId(id);
+
+            String lib = DaoFactory.getFabricantDAO().getByMarque(article.getMarque().getId()).getLibelle();
+            article.getMarque().getFabricant().setLibelle(lib);
+
+
+
+            article.setCouleur(comboBoxCouleur.getSelectionModel().getSelectedItem());
+            article.setType(comboBoxType.getSelectionModel().getSelectedItem());
+            article.setStock((Integer.parseInt(textFieldStock.getText())));
+
+            if (!( create? DaoFactory.getArticleDAO().insert(article) : DaoFactory.getArticleDAO().update(article) )) {
+                Alert alertErrorInsert = new Alert(Alert.AlertType.ERROR);
+                alertErrorInsert.setTitle("Erreur");
+                alertErrorInsert.setHeaderText("Erreur! Problème lors de l'insertion.");
+                alertErrorInsert.showAndWait().ifPresent(btnTypeError -> {
+                    if (btnTypeError == ButtonType.OK) {
+                        alertErrorInsert.close();
+                    }
+                });
+
+            } else {
+                close();
+            }
+
+        } catch (RuntimeException e) {
+            Alert alertErrorInput = new Alert(Alert.AlertType.ERROR);
+            alertErrorInput.setTitle("Erreur");
+            alertErrorInput.setHeaderText("Erreur! Mauvaise donnée");
+            alertErrorInput.showAndWait().ifPresent(btnTypeError -> {
+                if (btnTypeError == ButtonType.OK) {
+                    alertErrorInput.close();
+                }
+            });
         }
-        else {
-            DaoFactory.getArticleDAO().update(article);
-            close();
-        }
+
+
     }
 
     @FXML
@@ -76,6 +116,7 @@ public class ModifieArticle {
         if (article.getId() == 0){
             create = true;
         } else {
+            nomFenetre.setText("Modification de l'article : " + article.getLibelle());
             textFieldNom.setText(article.getLibelle());
             textFieldPrix.setText(String.valueOf(article.getPrixAchat()));
             comboBoxVolume.getSelectionModel().select(new Volume(article.getVolume(), String.valueOf(article.getVolume())));

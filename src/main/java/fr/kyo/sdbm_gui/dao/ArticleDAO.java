@@ -126,9 +126,9 @@ public class ArticleDAO extends DAO<Article, Article> {
             preparedStatement.setInt(3, article.getVolume());
             preparedStatement.setFloat(4, article.getTitrage());
             preparedStatement.setInt(5, article.getMarque().getId());
-            if (article.getCouleur() == null) {preparedStatement.setNull(6 , Types.INTEGER);}
+            if (article.getCouleur().getId() == 0) {preparedStatement.setNull(6 , Types.INTEGER);}
                 else {preparedStatement.setInt(6, article.getCouleur().getId());}
-            if (article.getType() == null) { preparedStatement.setNull(7 , Types.INTEGER);}
+            if (article.getType().getId() == 0) { preparedStatement.setNull(7 , Types.INTEGER);}
             else { preparedStatement.setInt(7, article.getType().getId());}
             preparedStatement.setInt(8, article.getStock());
             preparedStatement.executeUpdate();
@@ -151,9 +151,9 @@ public class ArticleDAO extends DAO<Article, Article> {
             preparedStatement.setInt(3, article.getVolume());
             preparedStatement.setFloat(4, article.getTitrage());
             preparedStatement.setInt(5, article.getMarque().getId());
-            if (article.getCouleur() == null) {preparedStatement.setNull(6 , Types.INTEGER);}
+            if (article.getCouleur().getId() == 0) {preparedStatement.setNull(6 , Types.INTEGER);}
             else {preparedStatement.setInt(6, article.getCouleur().getId());}
-            if (article.getType() == null) { preparedStatement.setNull(7 , Types.INTEGER);}
+            if (article.getType().getId() == 0) { preparedStatement.setNull(7 , Types.INTEGER);}
             else { preparedStatement.setInt(7, article.getType().getId());}
             preparedStatement.setInt(8, article.getStock());
             preparedStatement.setInt(9, article.getId());
