@@ -36,7 +36,7 @@
         </rowConstraints>
          <children>
             <Button mnemonicParsing="false" onAction="#updateArticle" prefHeight="58.0" prefWidth="184.0" text="Update" GridPane.rowIndex="11" />
-            <Button mnemonicParsing="false" prefHeight="74.0" prefWidth="184.0" text="Delete" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+            <Button mnemonicParsing="false" onAction="#deleteArticle" prefHeight="74.0" prefWidth="184.0" text="Delete" GridPane.columnIndex="1" GridPane.rowIndex="11" />
             <Label prefHeight="48.0" prefWidth="184.0" text="Labelle" textAlignment="JUSTIFY">
                <font>
                   <Font size="24.0" />

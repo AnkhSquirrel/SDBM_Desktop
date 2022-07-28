@@ -76,4 +76,8 @@ public class GestionDetailArticle {
         typeValue.setText(article.getType().getNom());
         showAll();
     }
+    @FXML
+    public void deleteArticle(){
+        menuApp.deleteContact(article);
+    }
 }

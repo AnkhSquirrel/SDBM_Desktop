@@ -1,17 +1,23 @@
 package fr.kyo.sdbm_gui.metier;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Fabricant
 {
     private int id;
     private String libelle;
+    private ArrayList<Marque> marques;
 
     public Fabricant() {
         this.id = id;
         this.libelle = libelle;
+        marques = new ArrayList<>();
     }
     public Fabricant(int id, String libelle) {
         this.id = id;
         this.libelle = libelle;
+        marques = new ArrayList<>();
     }
 
     public Integer getId()
@@ -36,4 +42,8 @@ public class Fabricant
 	return libelle;
     }
 
+    public List<Marque> getMarques()
+    {
+        return marques;
+    }
 }

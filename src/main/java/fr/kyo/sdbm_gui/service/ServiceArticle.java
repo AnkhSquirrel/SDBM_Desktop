@@ -36,16 +36,10 @@ public class ServiceArticle
 		typeFiltre.add(0, new Type(0, "Choisir un type"));
 
 		volumesFiltre = DaoFactory.getArticleDAO().getVolume();;
-		volumesFiltre.add(0, new Volume(0, "Choisir un Volume"));
+		volumesFiltre.add(0, new Volume(0, "Choisir un volume"));
 
 		marqueFiltre = DaoFactory.getMarqueDAO().getAll();
-		Marque marque = new Marque();
-		marque.setId(0);
-		marque.setLibelle("Choisir une marque ");
-		marqueFiltre.add(0, marque);
-
-
-
+		marqueFiltre.add(0, new Marque(0, "Choisir une marque"));
 	}
 
 

@@ -72,7 +72,7 @@ public class GestionArticleController {
         paysSearch.valueProperty().addListener(observable -> filterArticle());
 
         fabricantSearch.setItems(FXCollections.observableArrayList(serviceArticle.getFabricantFiltre()));
-        fabricantSearch.valueProperty().addListener(observable -> filterArticle());
+        fabricantSearch.valueProperty().addListener(observable -> filterFabricant());
 
         volumeSearch.setItems(FXCollections.observableArrayList(serviceArticle.getFilteredVolume()));
         volumeSearch.valueProperty().addListener(observable -> filterArticle());
@@ -106,6 +106,7 @@ public class GestionArticleController {
 
     @FXML
     private void reset() {
+        libelleSearch.setText("");
         continentSearch.getSelectionModel().selectFirst();
         paysSearch.getSelectionModel().selectFirst();
         fabricantSearch.getSelectionModel().selectFirst();
@@ -126,13 +127,24 @@ public class GestionArticleController {
     private void filterContinent() {
         if (continentSearch.getSelectionModel().getSelectedItem() != null
                 && (continentSearch.getSelectionModel().getSelectedItem()).getId() != 0) {
-            paysSearch.setItems(FXCollections.observableArrayList(
-                    (continentSearch.getSelectionModel().getSelectedItem()).getPays()));
+            paysSearch.setItems(FXCollections.observableArrayList((continentSearch.getSelectionModel().getSelectedItem()).getPays()));
 
         } else {
             paysSearch.setItems(FXCollections.observableArrayList(serviceArticle.getPaysFiltre()));
         }
         paysSearch.getSelectionModel().select(0);
+        filterArticle();
+    }
+
+    private void filterFabricant() {
+        if (fabricantSearch.getSelectionModel().getSelectedItem() != null
+                && (fabricantSearch.getSelectionModel().getSelectedItem()).getId() != 0) {
+            marqueSearch.setItems(FXCollections.observableArrayList((fabricantSearch.getSelectionModel().getSelectedItem()).getMarques()));
+
+        } else {
+            marqueSearch.setItems(FXCollections.observableArrayList(serviceArticle.getFilteredMarque()));
+        }
+        marqueSearch.getSelectionModel().select(0);
         filterArticle();
     }
 
