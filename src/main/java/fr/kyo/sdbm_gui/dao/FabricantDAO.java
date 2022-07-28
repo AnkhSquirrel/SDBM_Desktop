@@ -2,8 +2,10 @@ package fr.kyo.sdbm_gui.dao;
 
 
 import fr.kyo.sdbm_gui.metier.Fabricant;
+import fr.kyo.sdbm_gui.metier.Marque;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -13,6 +15,8 @@ public class FabricantDAO extends DAO<Fabricant, Fabricant> {
 	public FabricantDAO(Connection connexion) {
 		super(connexion);
 	}
+
+	private ResultSet rs;
 
 	public ArrayList<Fabricant> getAll() {
 		ArrayList<Fabricant> liste = new ArrayList<>();
@@ -35,6 +39,27 @@ public class FabricantDAO extends DAO<Fabricant, Fabricant> {
 			e.printStackTrace();
 		}
 		return liste;
+	}
+
+	public Fabricant getByMarque(int marque) {
+		Fabricant fabricant;
+		try {
+
+			PreparedStatement pStmt = connexion.prepareStatement("SELECT f.ID_FABRICANT, f.NOM_FABRICANT from FABRICANT as f join MARQUE as m on m.ID_FABRICANT = f.ID_FABRICANT where m.ID_MARQUE = ? ");
+			pStmt.setInt(1, marque);
+			rs = pStmt.executeQuery();
+			rs.next();
+			fabricant = new Fabricant(rs.getInt(1), rs.getString(2));
+			rs.close();
+			return fabricant;
+		}
+
+		// Handle any errors that may have occurred.
+		catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+
 	}
 
 	@Override
