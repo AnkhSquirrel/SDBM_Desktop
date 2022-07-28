@@ -38,4 +38,5 @@ public class DaoFactory {
     public static TypeDAO getTypeDAO() {
         return new TypeDAO(connexion);
     }
+
 }
