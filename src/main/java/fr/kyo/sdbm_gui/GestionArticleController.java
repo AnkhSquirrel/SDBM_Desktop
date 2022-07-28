@@ -73,27 +73,28 @@ public class GestionArticleController {
         continentSearch.valueProperty().addListener(observable -> filterContinent());
 
         paysSearch.setItems(FXCollections.observableArrayList(serviceArticle.getPaysFiltre()));
-        paysSearch.getSelectionModel().selectedItemProperty().addListener(observable -> filterArticle());
+        paysSearch.getSelectionModel().selectedItemProperty().addListener(observable -> filterGlobal
+                ());
 
         fabricantSearch.setItems(FXCollections.observableArrayList(serviceArticle.getFabricantFiltre()));
         fabricantSearch.valueProperty().addListener(observable -> filterFabricant());
 
         volumeSearch.setItems(FXCollections.observableArrayList(serviceArticle.getFilteredVolume()));
-        volumeSearch.valueProperty().addListener(observable -> filterArticle());
+        volumeSearch.valueProperty().addListener(observable -> filterGlobal());
 
         rangeSliderTitrage.setLowValue(0.5);
         rangeSliderTitrage.setHighValue(26);
-        rangeSliderTitrage.lowValueProperty().addListener(observable -> filterArticle());
-        rangeSliderTitrage.highValueProperty().addListener(observable -> filterArticle());
+        rangeSliderTitrage.lowValueProperty().addListener(observable -> filterGlobal());
+        rangeSliderTitrage.highValueProperty().addListener(observable -> filterGlobal());
 
         couleurSearch.setItems(FXCollections.observableArrayList(serviceArticle.getFilteredCouleur()));
-        couleurSearch.valueProperty().addListener(observable -> filterArticle());
+        couleurSearch.valueProperty().addListener(observable -> filterGlobal());
 
         marqueSearch.setItems(FXCollections.observableArrayList(serviceArticle.getFilteredMarque()));
-        marqueSearch.getSelectionModel().selectedItemProperty().addListener(observable -> filterArticle());
+        marqueSearch.getSelectionModel().selectedItemProperty().addListener(observable -> filterGlobal());
 
         typeSearch.setItems(FXCollections.observableArrayList(serviceArticle.getFilteredType()));
-        typeSearch.valueProperty().addListener(observable -> filterArticle());
+        typeSearch.valueProperty().addListener(observable -> filterGlobal());
 
         articleTable.getSelectionModel().selectedItemProperty().addListener(observable -> showDetail());
     }
@@ -121,6 +122,7 @@ public class GestionArticleController {
         typeSearch.getSelectionModel().selectFirst();
         rangeSliderTitrage.setLowValue(0.5);
         rangeSliderTitrage.setHighValue(26);
+        filterGlobal();
     }
 
     public void setMenuApp(MenuApp menuApp) {
@@ -138,7 +140,7 @@ public class GestionArticleController {
             paysSearch.setItems(FXCollections.observableArrayList(serviceArticle.getPaysFiltre()));
         }
         paysSearch.getSelectionModel().select(0);
-        filterArticle();
+        filterGlobal();
     }
 
     private void filterFabricant() {
@@ -150,9 +152,13 @@ public class GestionArticleController {
             marqueSearch.setItems(FXCollections.observableArrayList(serviceArticle.getFilteredMarque()));
         }
         marqueSearch.getSelectionModel().select(0);
-        filterArticle();
+        filterGlobal();
     }
 
+    private void filterGlobal(){
+        pages = 1;
+        filterArticle();
+    }
     @FXML
     public void filterArticle() {
 
