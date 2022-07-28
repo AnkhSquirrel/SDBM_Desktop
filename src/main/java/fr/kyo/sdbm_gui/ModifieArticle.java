@@ -44,6 +44,7 @@ public class ModifieArticle {
         article.setStock((Integer.parseInt(textFieldStock.getText())));
         if (create) {
             DaoFactory.getArticleDAO().insert(article);
+            close();
         }
         else {
             DaoFactory.getArticleDAO().update(article);
