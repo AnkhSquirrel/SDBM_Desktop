@@ -19,6 +19,7 @@ import java.io.IOException;
 public class MenuApp extends Application {
     private Stage primaryStage;
     GestionDetailArticle gestionDetailArticle;
+    GestionArticleController gestionArticleController;
     public static void main(String[] args) {
         launch(args);
     }
@@ -53,8 +54,8 @@ public class MenuApp extends Application {
             gestionDetailArticle = loader1.getController();
             gestionDetailArticle.setMenuApp(this);
 
-            GestionArticleController controller = loader.getController();
-            controller.setMenuApp(this);
+            gestionArticleController = loader.getController();
+            gestionArticleController.setMenuApp(this);
 
             primaryStage.show();
         } catch (IOException e) {
@@ -73,7 +74,11 @@ public class MenuApp extends Application {
             FXMLLoader fxmlLoader = new FXMLLoader(MenuApp.class.getResource("editArticle.fxml"));
             AnchorPane modalPane = fxmlLoader.load();
             ModifieArticle modifieArticle = fxmlLoader.getController();
+
             modifieArticle.setArticle(article);
+            modifieArticle.setGestionArticleController(gestionArticleController);
+            modifieArticle.setModal(modal);
+
             modal.setScene(new Scene(modalPane));
             modal.setResizable(false);
             modal.initModality(Modality.WINDOW_MODAL);
@@ -93,6 +98,7 @@ public class MenuApp extends Application {
         alert.showAndWait().ifPresent(btnType -> {
             if (btnType == ButtonType.OK) {
                 DaoFactory.getArticleDAO().delete(article);
+                gestionArticleController.filterArticle();
             }
         });
 
