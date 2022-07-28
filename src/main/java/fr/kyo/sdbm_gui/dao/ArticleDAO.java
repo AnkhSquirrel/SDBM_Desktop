@@ -58,7 +58,7 @@ public class ArticleDAO extends DAO<Article, Article> {
         return liste;
     }
 
-    public ArrayList<Article> getLike(ArticleSearch articleSearch){
+    public ArrayList<Article> getLike(ArticleSearch articleSearch, int page){
         ResultSet rs;
         ArrayList<Article> liste = new ArrayList<>();
         String procedureStockee = "{call dbo.SP_QBE_VUE_ARTICLE (?,?,?,?,?,?,?,?,?,?,?,?)}";
@@ -75,8 +75,8 @@ public class ArticleDAO extends DAO<Article, Article> {
             cStmt.setInt(8,articleSearch.getContinent().getId());
             cStmt.setInt(9, articleSearch.getCouleur().getId());
             cStmt.setInt(10, articleSearch.getType().getId());
-            cStmt.setNull(11,Types.INTEGER);
-            cStmt.setNull(12,Types.INTEGER);
+            cStmt.setInt(11,page);
+            cStmt.setInt(12,100);
 
             cStmt.execute();
             rs = cStmt.getResultSet();

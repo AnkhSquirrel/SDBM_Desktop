@@ -54,9 +54,12 @@ public class GestionArticleController {
 
     private ServiceArticle serviceArticle;
 
+    private int pages;
+
     // Initialisation de la vue
     @FXML
     private void initialize() {
+        pages = 1;
         serviceArticle = new ServiceArticle();
         idColumn.setCellValueFactory(cellData -> cellData.getValue().idProperty().asObject());
         nomColumn.setCellValueFactory(cellData -> cellData.getValue().libelleProperty());
@@ -169,6 +172,22 @@ public class GestionArticleController {
             articleSearch.setType(typeSearch.getSelectionModel().getSelectedItem());
         if (marqueSearch.getSelectionModel().getSelectedItem() != null)
             articleSearch.setMarque(marqueSearch.getSelectionModel().getSelectedItem());
-        articleTable.setItems(FXCollections.observableArrayList(serviceArticle.getFilteredArticles(articleSearch)));
+        articleTable.setItems(FXCollections.observableArrayList(serviceArticle.getFilteredArticles(articleSearch, pages)));
+    }
+    @FXML
+    public void pagePlus(){
+        pages++;
+        filterArticle();
+        if(articleTable.getItems().size() == 0){
+           pageMoin();
+        }
+    }
+    @FXML
+    public void pageMoin(){
+        if(pages > 1){
+            pages--;
+            filterArticle();
+        }
+
     }
 }

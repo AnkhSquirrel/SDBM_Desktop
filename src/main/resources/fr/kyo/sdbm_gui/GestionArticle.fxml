@@ -12,7 +12,7 @@
 
 <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="559.0" prefWidth="943.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.kyo.sdbm_gui.GestionArticleController">
 	<children>
-								<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="700.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+								<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="223.0" prefWidth="933.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
 									<children>
 										<Label layoutX="12.0" layoutY="45.0" text="Libellé : " />
 										<TextField fx:id="libelleSearch" layoutX="57.0" layoutY="41.0" onKeyPressed="#filterArticle" onKeyReleased="#filterArticle" prefHeight="25.0" prefWidth="443.0" />
@@ -35,7 +35,7 @@
 
 									</children>
 								</AnchorPane>
-								<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="384.0" prefWidth="933.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0">
+								<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="324.0" prefWidth="933.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0">
 									<children>
 										<TableView fx:id="articleTable" layoutX="13.0" layoutY="13.0" minHeight="-Infinity" minWidth="-Infinity" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="13.0" AnchorPane.rightAnchor="13.0" AnchorPane.topAnchor="13.0">
 											<columns>
@@ -51,5 +51,7 @@
 										</TableView>
 									</children>
 								</AnchorPane>
+      <Button layoutX="42.0" layoutY="205.0" mnemonicParsing="false" onAction="#pageMoin" text="Page -" />
+      <Button layoutX="836.0" layoutY="205.0" mnemonicParsing="false" onAction="#pagePlus" text="Page +" />
 	</children>
 </AnchorPane>
