@@ -1,6 +1,5 @@
 package fr.kyo.sdbm_gui;
 
-import fr.kyo.sdbm_gui.dao.ArticleDAO;
 import fr.kyo.sdbm_gui.dao.DaoFactory;
 import fr.kyo.sdbm_gui.metier.*;
 import fr.kyo.sdbm_gui.service.ServiceArticle;
