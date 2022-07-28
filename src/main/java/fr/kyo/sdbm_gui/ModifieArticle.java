@@ -44,10 +44,7 @@ public class ModifieArticle {
         article.setStock((Integer.parseInt(textFieldStock.getText())));
         if (create) {
             DaoFactory.getArticleDAO().insert(article);
-<<<<<<<<< Temporary merge branch 1
             close();
-=========
->>>>>>>>> Temporary merge branch 2
         }
         else {
             DaoFactory.getArticleDAO().update(article);
