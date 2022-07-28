@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane prefHeight="607.0" prefWidth="652.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="607.0" prefWidth="652.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.kyo.sdbm_gui.ModifieArticle">
    <children>
       <Label fx:id="nomFenetre" alignment="CENTER" layoutX="226.0" layoutY="47.0" prefHeight="25.0" prefWidth="200.0" text="Ajouter un article" textOverrun="CLIP" />
       <GridPane fx:id="gridPane" layoutX="73.0" layoutY="104.0" prefHeight="402.0" prefWidth="505.0">
@@ -40,26 +40,22 @@
             <Label alignment="CENTER" prefHeight="17.0" prefWidth="272.0" text="Couleur :" GridPane.rowIndex="5" />
             <Label alignment="CENTER" prefHeight="17.0" prefWidth="272.0" text="Type :" GridPane.rowIndex="6" />
             <Label alignment="CENTER" prefHeight="17.0" prefWidth="272.0" text="Stock :" GridPane.rowIndex="7" />
-            <TextField maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="243.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
             <TextField maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="243.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
-            <ComboBox prefWidth="253.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
-            <ComboBox prefWidth="253.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
-            <ComboBox prefWidth="253.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-            <TextField prefHeight="25.0" prefWidth="225.0" GridPane.columnIndex="1" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="7" />
+            <ComboBox fx:id="comboBoxCouleur" prefWidth="253.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
+            <ComboBox fx:id="comboBoxType" prefWidth="253.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
+            <ComboBox fx:id="comboBoxVolume" prefWidth="253.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+            <TextField fx:id="textFieldNom" prefHeight="25.0" prefWidth="225.0" GridPane.columnIndex="1" />
+            <TextField fx:id="textFieldPrix" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="textFieldTitrage" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="textFieldStock" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+            <ComboBox fx:id="comboBoxMarque" prefWidth="253.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
          </children>
       </GridPane>
       <ButtonBar layoutX="167.0" layoutY="520.0" prefHeight="60.0" prefWidth="251.0">
          <buttons>
 
             <Button layoutX="213.0" layoutY="19.0" mnemonicParsing="false" text="Cancel" />
-            <Button mnemonicParsing="false" text="Save" />
-
-            <Button layoutX="213.0" layoutY="19.0" mnemonicParsing="false" text="Cancel" />
-            <Button mnemonicParsing="false" text="Save" />
+            <Button mnemonicParsing="false" onAction="#createArticle" text="Save" />
 
          </buttons>
       </ButtonBar>

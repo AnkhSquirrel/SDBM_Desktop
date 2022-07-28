@@ -116,8 +116,8 @@ public class ArticleDAO extends DAO<Article, Article> {
         return null;
     }
 
-    @Override
-    public boolean insert(Article article) {
+@Override
+    public  boolean insert(Article article) {
         try {
             String requete = "INSERT INTO ARTICLE VALUES (?,?,?,?,?,?,?,?)";
             PreparedStatement  preparedStatement = connexion().prepareStatement(requete, Statement.RETURN_GENERATED_KEYS);
