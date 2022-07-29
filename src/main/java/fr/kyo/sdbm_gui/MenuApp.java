@@ -1,7 +1,6 @@
 package fr.kyo.sdbm_gui;
 
 
-import fr.kyo.sdbm_gui.dao.ArticleDAO;
 import fr.kyo.sdbm_gui.dao.DaoFactory;
 import fr.kyo.sdbm_gui.metier.Article;
 import javafx.application.Application;
@@ -12,8 +11,11 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import org.controlsfx.control.spreadsheet.Grid;
 
 import java.io.IOException;
 
@@ -39,18 +41,20 @@ public class MenuApp extends Application {
             // Chargement du fichier fxml
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MenuApp.class.getResource("GestionArticle.fxml"));
-            AnchorPane menuLayout = loader.load();
+            GridPane menuLayout = loader.load();
 
             FXMLLoader loader1 = new FXMLLoader();
             loader1.setLocation(MenuApp.class.getResource("DetailsArticle.fxml"));
-            AnchorPane detailLayout = loader1.load();
+            VBox detailLayout = loader1.load();
 
             BorderPane borderPane = new BorderPane();
-            borderPane.setLeft(menuLayout);
+            borderPane.setCenter(menuLayout);
             borderPane.setRight(detailLayout);
 
             Scene scene = new Scene(borderPane);
             primaryStage.setScene(scene);
+            primaryStage.setMinWidth(1070);
+            primaryStage.setMinHeight(615);
 
             gestionDetailArticle = loader1.getController();
             gestionDetailArticle.setMenuApp(this);

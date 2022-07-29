@@ -3,6 +3,7 @@ package fr.kyo.sdbm_gui;
 import fr.kyo.sdbm_gui.metier.Article;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 
@@ -32,6 +33,10 @@ public class GestionDetailArticle {
     Label couleurValue;
     @FXML
     Label typeValue;
+    @FXML
+    Button deleteButton;
+    @FXML
+    Button updateButton;
 
     @FXML
     GridPane gridPane;
@@ -45,15 +50,17 @@ public class GestionDetailArticle {
     }
 
     public void hideAll(){
-        for(Node label : gridPane.getChildren()){
+        for(Node label : gridPane.getChildren())
             label.setVisible(false);
-        }
+        deleteButton.setVisible(false);
+        updateButton.setVisible(false);
     }
 
     public void showAll(){
-        for(Node label : gridPane.getChildren()){
+        for(Node label : gridPane.getChildren())
             label.setVisible(true);
-        }
+        deleteButton.setVisible(true);
+        updateButton.setVisible(true);
     }
 
     @FXML
