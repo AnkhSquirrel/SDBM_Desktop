@@ -1,6 +1,5 @@
 package fr.kyo.sdbm_gui;
 
-import fr.kyo.sdbm_gui.dao.DAO;
 import fr.kyo.sdbm_gui.dao.DaoFactory;
 import fr.kyo.sdbm_gui.metier.*;
 import fr.kyo.sdbm_gui.service.ServiceArticle;
@@ -13,8 +12,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.controlsfx.control.SearchableComboBox;
-
-import java.io.IOException;
 
 public class ModifieArticle {
     @FXML
@@ -87,6 +84,12 @@ public class ModifieArticle {
         }
 
 
+    }
+
+    @FXML
+    public void cancel(){
+        gestionArticleController.filterArticle();
+        modal.close();
     }
 
     @FXML
