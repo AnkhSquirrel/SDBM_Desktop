@@ -197,6 +197,6 @@ public class GestionArticleController {
             pages--;
             filterArticle();
         }
-
     }
+
 }
