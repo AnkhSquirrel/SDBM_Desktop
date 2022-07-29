@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
@@ -9,15 +8,19 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 <?import org.controlsfx.control.SearchableComboBox?>
 
-<AnchorPane prefHeight="607.0" prefWidth="652.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.kyo.sdbm_gui.ModifieArticle">
+<AnchorPane prefHeight="587.0" prefWidth="545.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.kyo.sdbm_gui.ModifieArticle">
    <children>
-      <Label fx:id="nomFenetre" alignment="CENTER" layoutX="226.0" layoutY="47.0" prefHeight="25.0" prefWidth="200.0" text="Ajouter un article" textOverrun="CLIP" />
-      <GridPane fx:id="gridPane" layoutX="73.0" layoutY="104.0" prefHeight="402.0" prefWidth="505.0">
+      <Label fx:id="nomFenetre" alignment="CENTER" layoutX="138.0" layoutY="42.0" prefHeight="25.0" prefWidth="309.0" text="Ajouter un article" textOverrun="CLIP">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <GridPane fx:id="gridPane" layoutX="20.0" layoutY="102.0" prefHeight="402.0" prefWidth="505.0">
          <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="248.33331298828125" minWidth="10.0" prefWidth="205.9999796549479" />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="427.6666946411133" minWidth="10.0" prefWidth="299.3333536783855" />
          </columnConstraints>
          <rowConstraints>
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -30,35 +33,37 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Label alignment="CENTER" prefHeight="17.0" prefWidth="260.0" text="Nom :" />
-            <Label alignment="CENTER" prefHeight="17.0" prefWidth="265.0" text="Prix : " GridPane.rowIndex="1" />
-            <Label alignment="CENTER" prefHeight="17.0" prefWidth="272.0" text="Titrage :" GridPane.rowIndex="3" />
-            <TextField maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="244.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
-            <TextField maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="243.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
-            <TextField maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="243.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-            <Label alignment="CENTER" prefHeight="17.0" prefWidth="265.0" text="Volume :" GridPane.rowIndex="2" />
-            <Label alignment="CENTER" prefHeight="17.0" prefWidth="272.0" text="Marque :" GridPane.rowIndex="4" />
-            <Label alignment="CENTER" prefHeight="17.0" prefWidth="272.0" text="Couleur :" GridPane.rowIndex="5" />
-            <Label alignment="CENTER" prefHeight="17.0" prefWidth="272.0" text="Type :" GridPane.rowIndex="6" />
-            <Label alignment="CENTER" prefHeight="17.0" prefWidth="272.0" text="Stock :" GridPane.rowIndex="7" />
-            <TextField maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="243.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="69.0" text="Nom :" />
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="70.0" text="Prix : " GridPane.rowIndex="1" />
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="50.0" text="Titrage :" GridPane.rowIndex="3" />
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="60.0" text="Volume :" GridPane.rowIndex="2" />
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="77.0" text="Marque :" GridPane.rowIndex="4" />
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="63.0" text="Couleur :" GridPane.rowIndex="5" />
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="55.0" text="Type :" GridPane.rowIndex="6" />
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="59.0" text="Stock :" GridPane.rowIndex="7" />
             <ComboBox fx:id="comboBoxCouleur" prefWidth="253.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
             <ComboBox fx:id="comboBoxType" prefWidth="253.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
             <ComboBox fx:id="comboBoxVolume" prefWidth="253.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-            <TextField fx:id="textFieldNom" prefHeight="25.0" prefWidth="225.0" GridPane.columnIndex="1" />
-            <TextField fx:id="textFieldPrix" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField fx:id="textFieldTitrage" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <TextField fx:id="textFieldStock" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-            <SearchableComboBox fx:id="comboBoxMarque" maxHeight="25.0" prefHeight="25.0" prefWidth="253.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <TextField fx:id="textFieldNom" maxWidth="253.0" prefHeight="25.0" prefWidth="253.0" GridPane.columnIndex="1" />
+            <TextField fx:id="textFieldPrix" maxWidth="253.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="textFieldTitrage" maxWidth="253.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="textFieldStock" maxWidth="253.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+            <SearchableComboBox fx:id="comboBoxMarque" maxHeight="25.0" maxWidth="253.0" prefHeight="25.0" prefWidth="253.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
          </children>
       </GridPane>
-      <ButtonBar layoutX="167.0" layoutY="520.0" prefHeight="60.0" prefWidth="251.0">
-         <buttons>
-
-            <Button layoutX="213.0" layoutY="19.0" mnemonicParsing="false" onAction="#close" text="Cancel" />
-            <Button mnemonicParsing="false" onAction="#createArticle" text="Save" />
-
-         </buttons>
-      </ButtonBar>
+      <GridPane layoutX="191.0" layoutY="532.0" prefHeight="25.0" prefWidth="196.0">
+         <columnConstraints>
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" valignment="CENTER" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+      
+                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#cancel" prefHeight="25.0" prefWidth="65.0" text="Annuler" />
+            <Button contentDisplay="CENTER" mnemonicParsing="false" onAction="#createArticle" prefHeight="25.0" prefWidth="65.0" text="Créer" GridPane.columnIndex="1" />
+         </children>
+      </GridPane>
    </children>
 </AnchorPane>

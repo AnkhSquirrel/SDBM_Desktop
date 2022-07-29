@@ -3,7 +3,6 @@ package fr.kyo.sdbm_gui;
 import fr.kyo.sdbm_gui.metier.*;
 import fr.kyo.sdbm_gui.service.ArticleSearch;
 import fr.kyo.sdbm_gui.service.ServiceArticle;
-import javafx.beans.property.FloatProperty;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;

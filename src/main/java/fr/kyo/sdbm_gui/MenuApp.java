@@ -15,8 +15,6 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import org.controlsfx.control.spreadsheet.Grid;
-
 import java.io.IOException;
 
 public class MenuApp extends Application {
@@ -91,6 +89,8 @@ public class MenuApp extends Application {
             modal.setResizable(false);
             modal.initModality(Modality.WINDOW_MODAL);
             modal.initOwner(primaryStage);
+            modal.getIcons().add(new Image(getClass().getResourceAsStream("Isopropyl_alcohol.png")));
+            modal.setTitle("Ajouter un article");
 
             modal.show();
         } catch (IOException e) {
