@@ -19,7 +19,6 @@ public class CouleurDAO extends DAO<Couleur, Couleur>{
 
     @Override
     public ArrayList<Couleur> getAll() {
-        {
             ArrayList<Couleur> liste = new ArrayList<>();
             try (Statement stmt = connexion.createStatement()) {
 
@@ -39,12 +38,11 @@ public class CouleurDAO extends DAO<Couleur, Couleur>{
                 e.printStackTrace();
             }
             return liste;
-        }
     }
 
     @Override
     public ArrayList<Couleur> getLike(Couleur objet) {
-        return null;
+        return new ArrayList<>();
     }
 
     @Override

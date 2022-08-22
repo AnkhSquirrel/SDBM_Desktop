@@ -53,12 +53,14 @@ public class GestionArticleController {
     private MenuApp menuApp;
 
     private ServiceArticle serviceArticle;
+    private  ArticleSearch articleSearch;
 
     private int pages;
 
     // Initialisation de la vue
     @FXML
     private void initialize() {
+        articleSearch = new ArticleSearch();
         pages = 1;
         serviceArticle = new ServiceArticle();
         idColumn.setCellValueFactory(cellData -> cellData.getValue().idProperty().asObject());
@@ -160,33 +162,51 @@ public class GestionArticleController {
     }
     @FXML
     public void filterArticle() {
-
-        ArticleSearch articleSearch = new ArticleSearch();
-        articleSearch.setLibelle(libelleSearch.getText());
-
-        if (paysSearch.getSelectionModel().getSelectedItem() != null)
+        if((articleSearch.getLibelle() != null && !articleSearch.getLibelle().equals(libelleSearch.getText()) ) || articleSearch.getLibelle() == null && !libelleSearch.getText().isEmpty()){
+            articleSearch.setLibelle(libelleSearch.getText());
+            pages = 1;
+        }
+        if (paysSearch.getSelectionModel().getSelectedItem() != null && articleSearch.getPays() != paysSearch.getSelectionModel().getSelectedItem()){
             articleSearch.setPays(paysSearch.getSelectionModel().getSelectedItem());
-        if (continentSearch.getSelectionModel().getSelectedItem() != null)
+            pages = 1;
+        }
+        if (continentSearch.getSelectionModel().getSelectedItem() != null && articleSearch.getContinent() != continentSearch.getSelectionModel().getSelectedItem()){
             articleSearch.setContinent(continentSearch.getSelectionModel().getSelectedItem());
-        if (fabricantSearch.getSelectionModel().getSelectedItem() != null)
+            pages = 1;
+        }
+        if (fabricantSearch.getSelectionModel().getSelectedItem() != null && articleSearch.getFabricant() != fabricantSearch.getSelectionModel().getSelectedItem()){
             articleSearch.setFabricant(fabricantSearch.getSelectionModel().getSelectedItem());
-        if (volumeSearch.getSelectionModel().getSelectedItem() != null)
+            pages = 1;
+        }
+        if (volumeSearch.getSelectionModel().getSelectedItem() != null && articleSearch.getVolume() != volumeSearch.getSelectionModel().getSelectedItem().getVolume()){
             articleSearch.setVolume(volumeSearch.getSelectionModel().getSelectedItem().getVolume());
-        articleSearch.setTitrageMin((float) rangeSliderTitrage.getLowValue());
-        articleSearch.setTitrageMax((float) rangeSliderTitrage.getHighValue());
-        if (couleurSearch.getSelectionModel().getSelectedItem() != null)
+            pages = 1;
+        }
+        if(articleSearch.getTitrageMin() != rangeSliderTitrage.getLowValue() || articleSearch.getTitrageMax() != rangeSliderTitrage.getHighValue()){
+            articleSearch.setTitrageMin((float) rangeSliderTitrage.getLowValue());
+            articleSearch.setTitrageMax((float) rangeSliderTitrage.getHighValue());
+            pages = 1;
+        }
+        if (couleurSearch.getSelectionModel().getSelectedItem() != null && articleSearch.getCouleur() != couleurSearch.getSelectionModel().getSelectedItem()){
             articleSearch.setCouleur(couleurSearch.getSelectionModel().getSelectedItem());
-        if (typeSearch.getSelectionModel().getSelectedItem() != null)
+            pages = 1;
+        }
+        if (typeSearch.getSelectionModel().getSelectedItem() != null && articleSearch.getType() != typeSearch.getSelectionModel().getSelectedItem()){
             articleSearch.setType(typeSearch.getSelectionModel().getSelectedItem());
-        if (marqueSearch.getSelectionModel().getSelectedItem() != null)
+            pages = 1;
+        }
+        if (marqueSearch.getSelectionModel().getSelectedItem() != null && articleSearch.getMarque() != marqueSearch.getSelectionModel().getSelectedItem()){
             articleSearch.setMarque(marqueSearch.getSelectionModel().getSelectedItem());
+            pages = 1;
+        }
         articleTable.setItems(FXCollections.observableArrayList(serviceArticle.getFilteredArticles(articleSearch, pages)));
     }
+
     @FXML
     public void pagePlus(){
         pages++;
         filterArticle();
-        if(articleTable.getItems().size() == 0){
+        if(articleTable.getItems().isEmpty()){
            pageMoin();
         }
     }

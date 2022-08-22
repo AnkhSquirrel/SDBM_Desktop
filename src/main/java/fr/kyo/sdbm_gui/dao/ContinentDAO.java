@@ -13,6 +13,11 @@ public class ContinentDAO extends DAO<Continent, Continent> {
 		super(connexion);
 	}
 
+	@Override
+	public Continent getByID(int id) {
+		return null;
+	}
+
 
 	public ArrayList<Continent> getAll() {
 		ArrayList<Continent> liste = new ArrayList<>();
@@ -39,32 +44,22 @@ public class ContinentDAO extends DAO<Continent, Continent> {
 	}
 
 	@Override
-	public Continent getByID(int id) {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<Continent> getLike(Continent objet) {
+		return new ArrayList<>();
 	}
 
 	@Override
 	public boolean insert(Continent objet) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
 	public boolean update(Continent object) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
 	public boolean delete(Continent object) {
-		// TODO Auto-generated method stub
 		return false;
-	}
-
-	@Override
-	public ArrayList<Continent> getLike(Continent objet) {
-		// TODO Auto-generated method stub
-		return new ArrayList<>();
 	}
 }

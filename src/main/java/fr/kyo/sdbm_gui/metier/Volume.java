@@ -1,25 +1,25 @@
 package fr.kyo.sdbm_gui.metier;
 
 public class Volume {
-    private int volume;
+    private int volumeVal;
     private String libelle;
 
 
     public Volume(){
-        volume = 0;
+        volumeVal = 0;
         libelle = "";
     }
-    public Volume(int volume, String libelle) {
-        this.volume = volume;
+    public Volume(int volumeVal, String libelle) {
+        this.volumeVal = volumeVal;
         this.libelle = libelle;
     }
 
     public int getVolume() {
-        return volume;
+        return volumeVal;
     }
 
-    public void setVolume(int volume) {
-        this.volume = volume;
+    public void setVolume(int volumeVal) {
+        this.volumeVal = volumeVal;
     }
 
     public String getLibelle() {

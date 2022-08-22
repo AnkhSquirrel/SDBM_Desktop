@@ -15,7 +15,11 @@ public class MarqueDAO extends DAO<Marque, Marque>
 		super(connexion);
 	}
 
-	private ResultSet rs;
+	@Override
+	public Marque getByID(int id) {
+		return null;
+	}
+
 
 	@Override
 	public ArrayList<Marque> getAll(){
@@ -43,7 +47,7 @@ public class MarqueDAO extends DAO<Marque, Marque>
 
 			PreparedStatement pStmt = connexion.prepareStatement("SELECT ID_MARQUE, NOM_MARQUE from Marque where ID_FABRICANT =  ?  order by NOM_MARQUE");
 			pStmt.setInt(1, fabricant);
-			rs = pStmt.executeQuery();
+			ResultSet rs = pStmt.executeQuery();
 
 			while (rs.next()) {
 				liste.add(new Marque(rs.getInt(1), rs.getString(2)));
@@ -60,34 +64,22 @@ public class MarqueDAO extends DAO<Marque, Marque>
 
 	@Override
 	public ArrayList<Marque> getLike(Marque objet) {
-		return null;
+		return new ArrayList<>();
 	}
 
 	@Override
-	public Marque getByID(int id)
-	{
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public boolean insert(Marque objet)
-	{
-		// TODO Auto-generated method stub
+	public boolean insert(Marque objet) {
 		return false;
 	}
 
 	@Override
-	public boolean update(Marque object)
-	{
-		// TODO Auto-generated method stub
+	public boolean update(Marque object) {
 		return false;
 	}
 
 	@Override
-	public boolean delete(Marque object)
-	{
-		// TODO Auto-generated method stub
+	public boolean delete(Marque object) {
 		return false;
 	}
+
 }

@@ -113,7 +113,7 @@ public class ArticleDAO extends DAO<Article, Article> {
 
     @Override
     public ArrayList<Article> getLike(Article objet) {
-        return null;
+        return new ArrayList<>();
     }
 
     @Override
@@ -134,7 +134,7 @@ public class ArticleDAO extends DAO<Article, Article> {
             preparedStatement.executeUpdate();
             preparedStatement.close();
             return true;
-        } catch (SQLException e) {
+        }catch (SQLException e) {
             return false;
         }
     }
@@ -169,7 +169,7 @@ public class ArticleDAO extends DAO<Article, Article> {
             String requete = "DELETE FROM article WHERE id_article=?";
             PreparedStatement preparedStatement = connexion().prepareStatement(requete);
             preparedStatement.setInt(1, article.getId());
-            int rowDeleted = preparedStatement.executeUpdate();
+            preparedStatement.executeUpdate();
             return true;
         } catch (SQLException e) {
             return false;

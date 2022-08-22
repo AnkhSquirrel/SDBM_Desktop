@@ -19,7 +19,6 @@ public class TypeDAO extends DAO<Type , Type> {
 
     @Override
     public ArrayList<Type> getAll() {
-        {
             ArrayList<Type> liste = new ArrayList<>();
             try (Statement stmt = connexion.createStatement()) {
 
@@ -39,13 +38,12 @@ public class TypeDAO extends DAO<Type , Type> {
                 e.printStackTrace();
             }
             return liste;
-        }
 
     }
 
     @Override
     public ArrayList<Type> getLike(Type objet) {
-        return null;
+        return new ArrayList<>();
     }
 
     @Override
