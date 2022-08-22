@@ -14,6 +14,11 @@ public class PaysDAO extends DAO<Pays, Pays> {
 		super(connexion);
 	}
 
+	@Override
+	public Pays getByID(int id) {
+		return null;
+	}
+
 	private ResultSet rs;
 
 	public ArrayList<Pays> getAll() {
@@ -37,6 +42,26 @@ public class PaysDAO extends DAO<Pays, Pays> {
 			e.printStackTrace();
 		}
 		return liste;
+	}
+
+	@Override
+	public ArrayList<Pays> getLike(Pays objet) {
+		return new ArrayList<>();
+	}
+
+	@Override
+	public boolean insert(Pays objet) {
+		return false;
+	}
+
+	@Override
+	public boolean update(Pays object) {
+		return false;
+	}
+
+	@Override
+	public boolean delete(Pays object) {
+		return false;
 	}
 
 	public ArrayList<Pays> getByContinent(int continent) {
@@ -89,33 +114,4 @@ public class PaysDAO extends DAO<Pays, Pays> {
 
 	}
 
-	@Override
-	public Pays getByID(int id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public boolean insert(Pays objet) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean update(Pays object) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean delete(Pays object) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public ArrayList<Pays> getLike(Pays objet) {
-		// TODO Auto-generated method stub
-		return new ArrayList<>();
-	}
 }

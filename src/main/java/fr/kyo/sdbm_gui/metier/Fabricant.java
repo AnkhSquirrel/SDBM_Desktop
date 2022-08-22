@@ -10,8 +10,8 @@ public class Fabricant
     private ArrayList<Marque> marques;
 
     public Fabricant() {
-        this.id = id;
-        this.libelle = libelle;
+        this.id = 0;
+        this.libelle = "Fabricant";
         marques = new ArrayList<>();
     }
     public Fabricant(int id, String libelle) {

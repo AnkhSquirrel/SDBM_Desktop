@@ -14,7 +14,11 @@ public class FabricantDAO extends DAO<Fabricant, Fabricant> {
 		super(connexion);
 	}
 
-	private ResultSet rs;
+	@Override
+	public Fabricant getByID(int id) {
+		return null;
+	}
+
 
 	public ArrayList<Fabricant> getAll() {
 		ArrayList<Fabricant> liste = new ArrayList<>();
@@ -45,7 +49,7 @@ public class FabricantDAO extends DAO<Fabricant, Fabricant> {
 
 			PreparedStatement pStmt = connexion.prepareStatement("SELECT f.ID_FABRICANT, f.NOM_FABRICANT from FABRICANT as f join MARQUE as m on m.ID_FABRICANT = f.ID_FABRICANT where m.ID_MARQUE = ? ");
 			pStmt.setInt(1, marque);
-			rs = pStmt.executeQuery();
+			ResultSet rs = pStmt.executeQuery();
 
 			if (rs.next()){
 				fabricant = new Fabricant(rs.getInt(1), rs.getString(2));
@@ -66,32 +70,23 @@ public class FabricantDAO extends DAO<Fabricant, Fabricant> {
 	}
 
 	@Override
-	public Fabricant getByID(int id) {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<Fabricant> getLike(Fabricant objet) {
+		return new ArrayList<>();
 	}
 
 	@Override
 	public boolean insert(Fabricant objet) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
 	public boolean update(Fabricant object) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
 	public boolean delete(Fabricant object) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
-	@Override
-	public ArrayList<Fabricant> getLike(Fabricant objet) {
-		// TODO Auto-generated method stub
-		return new ArrayList<>();
-	}
 }
